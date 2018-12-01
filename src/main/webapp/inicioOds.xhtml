@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
@@ -15,8 +16,16 @@
         <link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script"/>
         <title>Home Page</title>
     </h:head>
-    
-    <ui:define name="content">
+    <h:body>
+        <h:dataTable value="#{objetivoController.allObjetivos}" var="objetivo">
+            <h:column>
+                <h:link value="#{objetivo.nro}" outcome="objetivo">
+                    <f:param name="nro" value="#{objetivo.nro}" />
+                </h:link>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+<!--    <ui:define name="content">
         <p:dataTable id="ods"
                      value="#{objetivoController.getAllObjetivos}"
                      var="obj">
@@ -37,6 +46,6 @@
             </p:column>
         </p:dataTable>      
         
-    </ui:define>
+    </ui:define>-->
     
 </html>

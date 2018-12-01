@@ -24,16 +24,17 @@ public class ObjetivoBean {
     @PersistenceContext(unitName = "webpoo")
     EntityManager em;
     
-    public List<Objetivo> getObjetivos() {
-        Query q = em.createNamedQuery("Objetivo.allOds");
-        return q.getResultList();
+    public List<Objetivo> getAllObjetivos() {
+        Query query = em.createNamedQuery("objetivo.allObjetivos");
+        return query.getResultList();
     }
     
+        
     public void create(Objetivo o) {
         em.persist(o);
     }
 
-    public void Update(Objetivo o) {
+    public void update(Objetivo o) {
         em.merge(o);
     }
 

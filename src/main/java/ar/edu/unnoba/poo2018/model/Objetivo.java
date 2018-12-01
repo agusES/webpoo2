@@ -12,8 +12,8 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "Objetivos")
-@NamedQuery(name = "Objetivo.allOds",
-            query = "SELECT o FROM objetivos o ")
+@NamedQuery(name = "objetivo.allObjetivos",
+            query = "Select o From Objetivo o")
 public class Objetivo {
 	
 	@Id

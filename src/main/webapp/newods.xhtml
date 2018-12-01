@@ -16,9 +16,9 @@
         <br />
         <p:panelGrid columns="2" styleClass="">
             <p:outputLabel value="Nombre"></p:outputLabel>
-            <p:inputText value="#{ObjetivoController.nombre}"/>
+            <p:inputText value="#{objetivoController.objetivo.nombre}"/>
             <p:commandButton value="Guardar" 
-                             action="#{ObjetivoController.crearObj()}" />
+                             action="#{objetivoController.crearObj()}" />
             <p:button value="Cancelar" outcome="inicio.xhtml"/>
         </p:panelGrid>
     </body>

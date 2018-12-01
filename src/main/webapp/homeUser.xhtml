@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script"/>
+        <link href="css/homeUserCSS.css" rel="stylesheet"/>
         <title>UNNOBAPP</title>
     </h:head>
     <h:body>
@@ -34,16 +35,22 @@
                     
                 
             </div>
-        </nav>
-        <h:form>
-            <h:panelGrid columns = "2"> 
-            #{msg['Language']}
-                <h:selectOneMenu value = "#{userData.locale}" onchange = "submit()"
-                valueChangeListener = "#{userData.localeChanged}">
-                    <f:selectItems value = "#{userData.countries}" /> 
-                </h:selectOneMenu> 
-            </h:panelGrid>
-        </h:form>       
+        </nav>  
+         <footer class="footer">
+            <div class="container">
+              <span class="text-muted"> 
+                <h:form>
+                    <h:panelGrid columns = "2"> 
+                    #{msg['Language']}
+                        <h:selectOneMenu value = "#{userData.locale}" onchange = "submit()"
+                        valueChangeListener = "#{userData.localeChanged}">
+                            <f:selectItems value = "#{userData.countries}" /> 
+                        </h:selectOneMenu> 
+                    </h:panelGrid>
+                </h:form>       
+              </span>
+             </div>
+        </footer>
         
     </h:body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script"/>
+        <title>Home Page</title>
+    </h:head>
+    <h:body>
+        <h:dataTable value="#{objetivoController.allObjetivos}" var="objetivo">
+            <h:column>
+                <h:link value="#{objetivo.nro}" outcome="objetivo">
+                    <f:param name="nro" value="#{objetivo.nro}" />
+                </h:link>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+<!--    <ui:define name="content">
+        <p:dataTable id="ods"
+                     value="#{objetivoController.getAllObjetivos}"
+                     var="obj">
+            <p:column headerText="ID">
+                <h:outputText value ="#(obj.nro)"/>
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value ="#(obj.nombre)"/>
+            </p:column>
+            <p:column>
+                <p:commandLink actionListener="#{ObjetivoBean.remove(obj)}"
+                               value="Eliminar"
+                               update="ods">
+                    <p:confirm header="Confirmacion"
+                               message="Se eliminara #{obj.nombre}"
+                               icon="ui-icon-alert" />
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>      
+        
+    </ui:define>-->
+    
+</html>
