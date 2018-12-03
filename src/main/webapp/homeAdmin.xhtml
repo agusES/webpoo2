@@ -40,6 +40,8 @@
             <div class="container">
               <span class="text-muted"> 
                 <h:form>
+                    <h3>
+                        
                     <h:panelGrid columns = "2"> 
                     #{msg['Language']}
                         <h:selectOneMenu value = "#{userData.locale}" onchange = "submit()"
@@ -47,6 +49,7 @@
                             <f:selectItems value = "#{userData.countries}" /> 
                         </h:selectOneMenu> 
                     </h:panelGrid>
+                    </h3>
                 </h:form>       
               </span>
              </div>

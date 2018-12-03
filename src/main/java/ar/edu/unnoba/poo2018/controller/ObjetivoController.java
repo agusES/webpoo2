@@ -24,8 +24,9 @@ import persistencePackage.ObjetivoBean;
 @ManagedBean(name = "objetivoController")
 @RequestScoped
 public class ObjetivoController implements Serializable  {
-    private Objetivo objetivo;
     
+    private String nombre;
+
     @EJB
     private ObjetivoBean objetivob;
     
@@ -33,17 +34,26 @@ public class ObjetivoController implements Serializable  {
     
     @PostConstruct
     public void init() {
-        objetivo = new Objetivo();
+       // objetivo = new Objetivo();
     }
 
     public String crearObj(){
         try{
-            objetivob.create(objetivo);
-            System.out.println(objetivo);
+            System.out.println("-----------------------crearObj()");
+            Objetivo o = new Objetivo(nombre);
+            objetivob.create(o);
+            System.out.println(o);
+            System.out.println("----------------------- FIN - crearObj()");
         }catch(Exception e){
-            System.out.println(objetivo);
+            System.out.println("-----------------------ERROR crearObj()");
+            e.printStackTrace();
+            System.out.println("-----------------------FIN ERROR - crearObj()");
             return "fallo";
         }
+
+        System.out.println("-----------------------");
+        System.out.println(nombre);
+        System.out.println("-----------------------");
         return "exito";
     }
      
@@ -51,24 +61,18 @@ public class ObjetivoController implements Serializable  {
         return objetivob.getAllObjetivos();
     }
     
-    public Objetivo getObjetivo(){
-        return objetivo;
-    }
-    
-    public void setObjetivo(Objetivo o){
-        this.objetivo = o;
-    }
+   
     
     //
     
-    public String update(){
-        try{
-            objetivob.update(objetivo);
-            return "/users/index?faces-redirect=true";
-        }catch(Exception e){
-            return null;
-        }
-    }
+//    public String update(){
+//        try{
+//            objetivob.update(objetivo);
+//            return "/users/index?faces-redirect=true";
+//        }catch(Exception e){
+//            return null;
+//        }
+//    }
     
     public void delete(Objetivo obj){
        // if(!sessionBacking.getUser().equals(user)){
@@ -78,8 +82,15 @@ public class ObjetivoController implements Serializable  {
            FacesMessage message = new FacesMessage("No puede borrar este usuario");
            context.addMessage(null, message);
         }*/
-        
+    } 
+    public String getNombre() {
+        return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     //
     
     

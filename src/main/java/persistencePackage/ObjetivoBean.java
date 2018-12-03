@@ -32,6 +32,7 @@ public class ObjetivoBean {
         
     public void create(Objetivo o) {
         em.persist(o);
+        System.out.println("persistio");
     }
 
     public void update(Objetivo o) {

@@ -14,12 +14,15 @@
 
         <h2>Ingrese los datos del nuevo objetivo</h2>
         <br />
-        <p:panelGrid columns="2" styleClass="">
-            <p:outputLabel value="Nombre"></p:outputLabel>
-            <p:inputText value="#{objetivoController.objetivo.nombre}"/>
-            <p:commandButton value="Guardar" 
-                             action="#{objetivoController.crearObj()}" />
-            <p:button value="Cancelar" outcome="inicio.xhtml"/>
-        </p:panelGrid>
+        <h:form>
+            
+            <p:panelGrid columns="2" styleClass="">
+                <p:outputLabel value="Nombre"></p:outputLabel>
+                <p:inputText value="#{objetivoController.nombre}"/>
+                <p:commandButton value="Guardar" 
+                                 action="#{objetivoController.crearObj()}" />
+                <p:button value="Cancelar" outcome="inicio.xhtml"/>
+            </p:panelGrid>
+        </h:form>
     </body>
 </html>
