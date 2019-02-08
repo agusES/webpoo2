@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script" />
+	<link href="css/inicioCSS.css" rel="stylesheet" />
+	<title>#{msg['SesionError']}</title>
+</h:head>
+
+<h:body>
+	<f:view>
+		<p>#{msg['SessionErrorMsg']}</p>
+		<h:outputLink value="inicio.xhtml">#{msg['Back']}</h:outputLink>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script" />
+	<link href="css/inicioCSS.css" rel="stylesheet" />
+	<title>#{msg['RegisterNewUser']}</title>
+</h:head>
+
+<h:body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="inicio.xhtml"><span
+							class="glyphicon glyphicon-home"></span> #{msg['Home']}</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="about.xhtml"><span
+							class="glyphicon glyphicon-info-sign"></span> #{msg['About']}</a></li>
+				</ul>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:selectOneMenu value="#{userData.locale}" onchange="submit()"
+							valueChangeListener="#{userData.localeChanged}">
+							<f:selectItems value="#{userData.countries}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+	</nav>
+	<br />
+	<br />
+	<br />
+
+	<div class="container">
+		<h:form class="form-signin" allign="center">
+			<h2 class="form-signin-heading">#{msg['Register']}</h2>
+			<br />
+			<h:outputText value="#{msg['Username']}" />
+			<h:inputText class="form-control" id="inputName"
+				value="#{usuarioController.name}" required="true" />
+			<br />
+			<h:outputText value="#{msg['Password']}" />
+			<h:inputSecret class="form-control" id="inputPassword"
+				value="#{usuarioController.password}" required="true" />
+			<br />
+			<h:outputText value="#{msg['isAdmin']} " />
+			<p:selectBooleanCheckbox allign="right" value="#{usuarioController.administrador} " />
+			<br />
+			<h:commandButton class="btn btn-lg btn-primary btn-block"
+				value="#{msg['Register']}" action="#{usuarioController.register()}" />
+		</h:form>
+	</div>
+
+	<div class="footer">#{msg['CreatedBy']}</div>
+
+</h:body>
+</html>

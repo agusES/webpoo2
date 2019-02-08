@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-              version="2.0">
-    <application>
-        <locale-config>
-            <default-locale>en</default-locale>
-        </locale-config>
-        <resource-bundle>
-         <base-name>com.unnobaPOO.messages</base-name>
-         <var>msg</var>
-      </resource-bundle>
-    </application>
-    <navigation-rule>
-        <description>login user</description>
-        <from-view-id>/login.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
-            <from-outcome>successAdmin</from-outcome>
-            <to-view-id>/homeAdmin.xhtml</to-view-id>
-        </navigation-case>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
 
-        <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
-            <from-outcome>successUser</from-outcome>
-            <to-view-id>/homeUser.xhtml</to-view-id>
-        </navigation-case>
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>com.unnobaPOO.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
 
-        <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
-            <from-outcome>invalid</from-outcome>
-            <to-view-id>/error.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+	<navigation-rule>
 
-    <navigation-rule>
-        <description>register new user</description>
-        <from-view-id>/register2.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{usuarioController.register()}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/inicio.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{usuarioController.register()}</from-action>
-            <from-outcome>unsuccess</from-outcome>
-            <to-view-id>/unsuccess.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+		<description>Registro de nuevo usuario</description>
+		<display-name>register.xhtml</display-name>
+		<from-view-id>/register.xhtml</from-view-id>
 
-    <navigation-rule>
-        <description>logout</description>
-        <navigation-case>
-            <from-action>#{usuarioController.logout()}</from-action>
-            <from-outcome>logout</from-outcome>
-            <to-view-id>/inicio.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+		<navigation-case>
+			<to-view-id>/errorSignup.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{usuarioController.register()}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/inicio.xhtml</to-view-id>
+		</navigation-case>
+
+
+	</navigation-rule>
+
+	<navigation-rule>
+		<description>Página principal</description>
+		<display-name>inicio.xhtml</display-name>
+		<from-view-id>/inicio.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-action>#{usuarioController.login()}</from-action>
+			<from-outcome>successAdmin</from-outcome>
+			<to-view-id>/homeAdmin.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{usuarioController.login()}</from-action>
+			<from-outcome>successUser</from-outcome>
+			<to-view-id>/homeUser.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{usuarioController.login()}</from-action>
+			<from-outcome>invalid</from-outcome>
+			<to-view-id>/errorLogin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>
