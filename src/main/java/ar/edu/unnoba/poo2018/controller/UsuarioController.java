@@ -40,12 +40,13 @@ public class UsuarioController {
 
     public String login() {
         Usuario authuser = userb.findByUser(name, password);
+             
         if (authuser != null) {
             if (authuser.isAdministrador() == true) {
                 return "successAdmin";
             } else {
                 return "successUser";
-            }
+            }   
         }
         return "invalid";
     }

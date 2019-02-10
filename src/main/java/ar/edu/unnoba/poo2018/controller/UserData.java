@@ -9,6 +9,7 @@ package ar.edu.unnoba.poo2018.controller;
  *
  * @author flynn
  */
+
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -26,12 +27,11 @@ public class UserData implements Serializable {
    private String locale;
 
    private static Map<String,Object> countries;
-      static {
-      
+      static {      
       countries = new LinkedHashMap<String,Object>();
       countries.put("English", Locale.ENGLISH);
-      countries.put("French", Locale.FRENCH);
-      countries.put("Spanish", (new Locale("es","AR")));
+      countries.put("Francais", Locale.FRENCH);
+      countries.put("Español", (new Locale("es","AR")));
    }
 
    public Map<String, Object> getCountries() {

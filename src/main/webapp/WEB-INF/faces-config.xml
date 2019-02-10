@@ -22,10 +22,6 @@
 		<from-view-id>/register.xhtml</from-view-id>
 
 		<navigation-case>
-			<to-view-id>/errorSignup.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
 			<from-action>#{usuarioController.register()}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/inicio.xhtml</to-view-id>
@@ -51,11 +47,6 @@
 			<to-view-id>/homeUser.xhtml</to-view-id>
 		</navigation-case>
 
-		<navigation-case>
-			<from-action>#{usuarioController.login()}</from-action>
-			<from-outcome>invalid</from-outcome>
-			<to-view-id>/errorLogin.xhtml</to-view-id>
-		</navigation-case>
 	</navigation-rule>
 
 </faces-config>

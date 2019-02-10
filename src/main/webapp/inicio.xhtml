@@ -1,102 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css"
-		rel="stylesheet" />
-	<link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script" />
-	<link href="css/inicioCSS.css" rel="stylesheet" />
-	<title>#{msg['Home']}</title>
-</h:head>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+<link rel="stylesheet" href="css/inicioCSS.css" />
+<title>#{msg['Home']}</title>
+</head>
 
-<h:body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+<body>
+	<nav class="navbar navbar-expand navbar-light fixed-top"
+		style="background-color: #e3f2fd;">
+
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<!-- 				<a class="navbar-brand" href="inicio.xhtml">#{msg['IndexTittle']}</a> -->
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-left">
-					<li><a href="inicio.xhtml"><span
-							class="glyphicon glyphicon-home"></span> #{msg['Home']}</a></li>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse">
+
+				<ul class="navbar-nav mr-auto">
+				
+					<li class="nav-item active"><a href="inicio.xhtml"><span
+							class="fas fa-home"></span>#{msg['Home']}</a></li>
+				
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="about.xhtml"><span
-							class="glyphicon glyphicon-info-sign"></span> #{msg['About']}</a></li>
+
+				<ul class="nav navbar-nav col-auto">
+				
+					<li><a href="#" class="nav-item active"
+						data-target="#infoModal" data-toggle="modal"><span
+							class="fas fa-info"></span>#{msg['About']}</a></li>
+				
 				</ul>
-				<h:form>
-					<h:panelGrid columns="2">
-						<h:selectOneMenu value="#{userData.locale}" onchange="submit()"
-							valueChangeListener="#{userData.localeChanged}">
-							<f:selectItems value="#{userData.countries}" />
-						</h:selectOneMenu>
-					</h:panelGrid>
-				</h:form>
+
 			</div>
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:selectOneMenu value="#{userData.locale}" onchange="submit()"
+						valueChangeListener="#{userData.localeChanged}">
+						<f:selectItems value="#{userData.countries}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</h:form>
 		</div>
 	</nav>
-	<br />
-	<br />
-	<br />
 
-	<!-- ESTO ES EL CONTAINER VIEJO. -->
-	<!-- 	<div class="container"> -->
-	<!-- 		<div class="panel panel-info"> -->
-	<!-- 			<div class="panel-heading">#{msg['Home']}</div> -->
-	<!-- 			<div class="panel-body"> -->
-	<!-- 				<div align="center" draggable="false"> -->
-	<!-- 					<div class="row"> -->
-	<!-- 						<div class="col-sm-12"> -->
-	<!-- 							<h:button class="btn btn-info" outcome="login" -->
-	<!-- 								value="#{msg['Login']}"></h:button> -->
-	<!-- 						</div> -->
-	<!-- 						<br /> <br /> <br /> <br /> -->
-	<!-- 						<div class="col-sm-12"> -->
-	<!-- 							<h:button class="btn btn-info" outcome="register" -->
-	<!-- 								value="#{msg['Register']}"></h:button> -->
-	<!-- 						</div> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-</h:body>
-
-<h:body>
-
-	<div class="container">
-		<h:form class="form-signin" allign="center">
+	<div class="wrapper">
+		<h:form class="form-signin">
 			<h2 class="form-signin-heading">#{msg['Login']}</h2>
-			<br />
-			<h:outputText value="#{msg['Username']}" />
-			<h:inputText class="form-control" id="inputName"
-				value="#{usuarioController.name}" required="true" />
-			<br />
-			<h:outputText value="#{msg['Password']}" />
+
+			<h:inputText class="form-control" placeholder="#{msg['Username']}"
+				id="inputName" value="#{usuarioController.name}" autofocus="true"
+				required="true" oninvalid="alert('You must fill out the form!');" />
+
 			<h:inputSecret class="form-control" id="inputPassword"
-				value="#{usuarioController.password}" required="true" />
-			<br />
-			<h:commandButton class="btn btn-lg btn-primary btn-block"
-				value="#{msg['Login']}" action="#{usuarioController.login()}" />
-			<br />
-			<h:outputText allign="right" value="#{msg['NotAUser']} " />
-			<h:outputLink allign="right" value="register.xhtml"> #{msg['Register']}</h:outputLink>
+				value="#{usuarioController.password}"
+				placeholder="#{msg['Password']}" required="true" />
+
+			<h:commandButton
+				class="btn btn-lg btn-primary btn-block text-uppercase"
+				action="#{usuarioController.login()}" value="#{msg['Submit']}" />
+
+			<h:outputText value="#{msg['NotAUser']} " />
+			<h:outputLink value="register.xhtml"> #{msg['Signup']}</h:outputLink>
 		</h:form>
 	</div>
 
-	<div class="footer">#{msg['CreatedBy']}</div>
 
-</h:body>
+	<div class="footer">
+		#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
+	</div>
+
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-tittle">#{msg['About']}</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&#215;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						<span>#{msg['AboutUs']}</span>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</body>
 </html>
