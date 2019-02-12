@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencePackage;
+package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Convocatoria;
 import javax.ejb.Stateless;

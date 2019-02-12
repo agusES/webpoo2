@@ -5,6 +5,7 @@
  */
 package ar.edu.unnoba.poo2018.controller;
 
+import ar.edu.unnoba.poo2018.beans.CompuestoBean;
 import ar.edu.unnoba.poo2018.model.Compuesto;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import persistencePackage.CompuestoBean;
 
 /**
  *

@@ -5,74 +5,72 @@
  */
 package ar.edu.unnoba.poo2018.controller;
 
+import ar.edu.unnoba.poo2018.beans.UsuarioBean;
 import ar.edu.unnoba.poo2018.model.Usuario;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.ejb.EJB;
-import persistencePackage.UsuarioBean;
 
-/**
- *
- * @author Balma
- */
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.ejb.EJB;
+
 @ManagedBean(name = "usuarioController")
-@RequestScoped
+@SessionScoped
 public class UsuarioController {
 
-    @EJB
-    private UsuarioBean userb;
-    private boolean administrador;
-    private String name;
-    private String password;
+	private boolean isAdmin;
+	private String name;
+	private String password;
 
-    public String register() {
-        userb.create(new Usuario(name, password, administrador));
-        return "success";
-    }
+	@EJB
+	private UsuarioBean userb;
 
-    public String logout() {
-        return "logout";
-    }
+	public String register() {
+		userb.create(new Usuario(name, password, isAdmin));
+		return "success";
+	}
 
-    public String inicio() {
-        return "inicio.xhtml?faces-redirect=true";
-    }
+	public String logout() {
+		return "logout";
+	}
 
-    public String login() {
-        Usuario authuser = userb.findByUser(name, password);
-             
-        if (authuser != null) {
-            if (authuser.isAdministrador() == true) {
-                return "successAdmin";
-            } else {
-                return "successUser";
-            }   
-        }
-        return "invalid";
-    }
+	public String inicio() {
+		return "inicio.xhtml?faces-redirect=true";
+	}
 
-    public boolean isAdministrador() {
-        return administrador;
-    }
+	public String login() {
+		Usuario authuser = userb.findByUser(name, password);
 
-    public void setAdministrador(boolean administrador) {
-        this.administrador = administrador;
-    }
+		if (authuser != null) {
+			if (authuser.isAdmin() == true) {
+				return "successAdmin";
+			} else {
+				return "successUser";
+			}
+		}
+		return "invalid";
+	}
 
-    public String getName() {
-        return name;
-    }
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }
