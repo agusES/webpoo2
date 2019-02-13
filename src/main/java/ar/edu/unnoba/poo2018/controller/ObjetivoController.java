@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.beans.ObjetivoBean;
@@ -15,12 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Query;
 
-/**
- *
- * @author Balma
- */
 @ManagedBean(name = "objetivoController")
 @RequestScoped
 public class ObjetivoController implements Serializable  {

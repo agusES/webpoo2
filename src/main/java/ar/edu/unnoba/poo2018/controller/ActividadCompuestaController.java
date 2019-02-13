@@ -5,8 +5,8 @@
  */
 package ar.edu.unnoba.poo2018.controller;
 
-import ar.edu.unnoba.poo2018.beans.CompuestoBean;
-import ar.edu.unnoba.poo2018.model.Compuesto;
+import ar.edu.unnoba.poo2018.beans.ActividadCompuestaBean;
+import ar.edu.unnoba.poo2018.model.ActividadCompuesta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,18 +20,18 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "compuestoController")
 @SessionScoped
-public class CompuestoController {
+public class ActividadCompuestaController {
 
     @EJB
-    private CompuestoBean compuestob;
+    private ActividadCompuestaBean compuestob;
 
-    private Compuesto compuesto = new Compuesto();
-    private List<Compuesto> compuestos = new ArrayList<>();
+    private ActividadCompuesta actividadCompuesta = new ActividadCompuesta();
+    private List<ActividadCompuesta> actividadCompuestas = new ArrayList<>();
 
     @PostConstruct
     public void init() {
-        compuesto = new Compuesto();
-        compuestos = new ArrayList<>();
+        actividadCompuesta = new ActividadCompuesta();
+        actividadCompuestas = new ArrayList<>();
     }
 
 }

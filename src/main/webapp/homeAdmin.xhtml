@@ -25,7 +25,6 @@
 
 			<div class="container">
 
-
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -34,33 +33,24 @@
 				</button>
 
 				<div class="collapse navbar-collapse">
-
 					<ul class="navbar-nav mr-auto">
-
 						<li class="nav-item active"><a href="inicio.xhtml"><span
 								class="fas fa-home"></span>#{msg['Home']}</a></li>
-
+						<li class="nav-item active"><a href="inicioActivity.xhtml"><span
+								class="fas fa-file-alt"></span>#{msg['Activity']}</a></li>
 						<li class="nav-item active"><a href="inicioOds.xhtml"><span
 								class="fas fa-book"></span>#{msg['Objectives']}</a></li>
-
 						<li class="nav-item active"><a href="#"><span
 								class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
-
 					</ul>
-
 					<ul class="nav navbar-nav col-auto">
-
 						<li><a href="#" class="nav-item active"
 							data-target="#infoModal" data-toggle="modal"><span
 								class="fas fa-info"></span>#{msg['About']}</a></li>
-
 						<li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
-
 						<li><a href="inicio.xhtml"><span
 								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li>
-
 					</ul>
-
 				</div>
 
 				<h:form>

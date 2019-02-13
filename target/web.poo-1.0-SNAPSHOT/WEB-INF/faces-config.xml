@@ -6,18 +6,18 @@
 	version="2.0">
 
 	<application>
-	
+
 		<locale-config>
 			<default-locale>es</default-locale>
 			<supported-locale>en</supported-locale>
 			<supported-locale>fr</supported-locale>
 		</locale-config>
-		
+
 		<resource-bundle>
 			<base-name>com.unnobaPOO.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
-		
+
 	</application>
 
 	<navigation-rule>
@@ -31,7 +31,12 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/inicio.xhtml</to-view-id>
 		</navigation-case>
-
+		
+		<navigation-case>
+			<from-action>#{usuarioController.register()}</from-action>
+			<from-outcome>usernameInUse</from-outcome>
+			<to-view-id>/errorSignup.xhtml</to-view-id>
+		</navigation-case>
 
 	</navigation-rule>
 
@@ -53,5 +58,17 @@
 		</navigation-case>
 
 	</navigation-rule>
+
+	<navigation-rule>
+		<description>Home admin</description>
+		<display-name>homeAdmin.xhtml</display-name>
+		<from-view-id>/homeAdmin.xhtml</from-view-id>
+
+		<navigation-case>
+			<to-view-id>/inicioActivity.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
 
 </faces-config>

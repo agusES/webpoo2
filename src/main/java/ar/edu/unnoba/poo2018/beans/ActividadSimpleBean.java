@@ -1,13 +1,14 @@
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Actividad;
+//import ar.edu.unnoba.poo2018.model.ActividadSimple;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 @Stateless
-public class ActividadBean {
+public class ActividadSimpleBean {
 
     @PersistenceContext(unitName = "webpoo")
     EntityManager em;

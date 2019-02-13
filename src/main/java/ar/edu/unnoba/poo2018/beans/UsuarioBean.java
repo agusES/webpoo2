@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
@@ -10,11 +5,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-/**
- *
- * @author Balma
- */
 
 @Stateless
 public class UsuarioBean {
@@ -38,7 +28,7 @@ public class UsuarioBean {
         return em.find(Usuario.class, id);
     }
 
-    public Usuario findByUser(String name, String pass) {
+    public Usuario authUser(String name, String pass) {
         Query query = em.createQuery("SELECT u FROM Usuario u where u.name = :value1 and u.password= :value2");
         query.setParameter("value1", name);
         query.setParameter("value2", pass);
@@ -49,5 +39,22 @@ public class UsuarioBean {
             userq = null;
         }
         return userq;
+    }
+    
+    public boolean findUser(String name) {
+        Query query = em.createQuery("SELECT u FROM Usuario u where u.name = :value1");
+        query.setParameter("value1", name);
+        Usuario userq;
+        try {
+            userq = (Usuario) query.getSingleResult();
+            if (userq != null) {
+            	return true;
+            }
+            
+        } catch (Exception e) {
+            userq = null;
+            return false;
+        }
+        return false;
     }
 }
