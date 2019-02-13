@@ -5,6 +5,7 @@
  */
 package ar.edu.unnoba.poo2018.controller;
 
+import ar.edu.unnoba.poo2018.beans.ObjetivoBean;
 import ar.edu.unnoba.poo2018.model.Objetivo;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.Query;
-import persistencePackage.ObjetivoBean;
 
 /**
  *

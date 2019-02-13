@@ -1,56 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html lang="#{idioma.language}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="script"/>
-        <link href="css/homeUserCSS.css" rel="stylesheet"/>
-        <title>UNNOBAPP</title>
-    </h:head>
-    <h:body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">#{msg['greetings']} #{usuarioController.name}</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">#{msg['Home']}</a></li>
-                    <li><a href="#">#{msg['Objectives']}</a></li>
-                    <li><a href="#">#{msg['Results']}</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>#{msg['Profile']}</a></li>
-                    <li><a href="inicio.xhtml"><span class="glyphicon glyphicon-log-in"></span> #{msg['Logout']}</a></li>
-                </ul>
-                <ul>
-                    
-                </ul>>
-                    
-                
-            </div>
-        </nav>  
-         <footer class="footer">
-            <div class="container">
-              <span class="text-muted"> 
-                <h:form>
-                    <h:panelGrid columns = "2"> 
-                    #{msg['Language']}
-                        <h:selectOneMenu value = "#{userData.locale}" onchange = "submit()"
-                        valueChangeListener = "#{userData.localeChanged}">
-                            <f:selectItems value = "#{userData.countries}" /> 
-                        </h:selectOneMenu> 
-                    </h:panelGrid>
-                </h:form>       
-              </span>
-             </div>
-        </footer>
-        
-    </h:body>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+<link rel="stylesheet" href="css/inicioCSS.css" />
+<title>Panel de usuario</title>
+</head>
+
+<body>
+
+	<f:view locale="#{idioma.locale}">
+
+		<nav class="navbar navbar-expand navbar-light fixed-top"
+			style="background-color: #e3f2fd;">
+
+			<div class="container">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a href="inicio.xhtml"><span
+								class="fas fa-home"></span>#{msg['Home']}</a></li>
+						<li class="nav-item active"><a href="inicioOds.xhtml"><span
+								class="fas fa-book"></span>#{msg['Objectives']}</a></li>
+						<li class="nav-item active"><a href="#"><span
+								class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav col-auto">
+						<li><a href="#" class="nav-item active"
+							data-target="#infoModal" data-toggle="modal"><span
+								class="fas fa-info"></span>#{msg['About']}</a></li>
+						<li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
+						<li><a href="inicio.xhtml"><span
+								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li>
+					</ul>
+				</div>
+
+				<h:form>
+					<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
+						<f:selectItem itemValue="es" itemLabel="Español" />
+						<f:selectItem itemValue="en" itemLabel="English" />
+						<f:selectItem itemValue="fr" itemLabel="Francais" />
+					</h:selectOneMenu>
+				</h:form>
+
+			</div>
+		</nav>
+
+		<div class="footer">
+			#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
+		</div>
+
+		<div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-tittle">#{msg['About']}</h3>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&#215;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>
+							<span>#{msg['AboutUs']}</span>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</f:view>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</body>
 </html>

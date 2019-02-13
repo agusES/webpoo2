@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\persistencePackage\SimpleBean.java
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Usuario.java
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\persistencePackage\ObjetivoBean.java
@@ -25,3 +26,32 @@ C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\s
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Simple.java
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\ImpactoController.java
 C:\Users\flynn\Documents\Sistemas\POO\proyecto\webpooDevBranch\web.poo\webpoo2\src\main\java\persistencePackage\CompuestoBean.java
+=======
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Ambito.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\UsuarioController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Compuesto.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\ConvocatoriaController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\ConvocatoriaBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\AmbitoController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\CompuestoBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Objetivo.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\LineaEstrategicaController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Simple.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Actividad.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\AmbitoBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\LineaEstrategica.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\ActividadBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\ObjetivoController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\UsuarioBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\CompuestoController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\ImpactoController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\SimpleController.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\ObjetivoBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\ImpactoBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\LineaEstrategicaBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\controller\UserData.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\persistencePackage\SimpleBean.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Impacto.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Convocatoria.java
+C:\Users\Bruno\Desktop\webpoo2\src\main\java\ar\edu\unnoba\poo2018\model\Usuario.java
+>>>>>>> bruno

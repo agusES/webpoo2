@@ -1,0 +1,51 @@
+body {
+	background-color: Snow;
+}
+
+.footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 2px;
+	background-color: #efefef;
+	text-align: center;
+	color: black;
+}
+
+.wrapper {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.fas {
+	padding-left: 15px;
+	padding-right: 3px;
+}
+
+.form-signin {
+	margin: auto;
+	max-width: 380px;
+	padding: 15px 35px 45px;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-signin input {
+	margin: 0 0 15px;
+}
+
+.form-signin-heading {
+	margin-bottom: 35px;
+}
+
+.checkbox {
+	font-weight: normal;
+}
+
+.form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+}

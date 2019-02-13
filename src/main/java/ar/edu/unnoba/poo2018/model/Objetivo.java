@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-@Entity
+@Entity(name = "objetivos")
 @Table(name = "Objetivos")
 @NamedQuery(name = "objetivo.allObjetivos",
             query = "Select o From Objetivo o")

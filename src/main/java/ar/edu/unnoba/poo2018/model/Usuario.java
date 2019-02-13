@@ -58,7 +58,7 @@ public class Usuario {
         this.password = password;
     }
 
-    public boolean isAdministrador() {
+    public boolean isAdmin() {
         return administrador;
     }
 
