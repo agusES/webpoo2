@@ -17,17 +17,22 @@
         <title>Home Page</title>
     </h:head>
     <h:body>
-        <h:dataTable value="#{objetivoController.allObjetivos}" var="objetivo">
+        <h:dataTable value="#{objetivoController.getObjetivos()}" var="objetivo">
             <h:column>
                 <h:link value="#{objetivo.nro}" outcome="objetivo">
                     <f:param name="nro" value="#{objetivo.nro}" />
+                </h:link>
+            </h:column>
+            <h:column>
+                <h:link value="#{objetivo.nombre}" outcome="objetivo">
+                    <f:param name="nro" value="#{objetivo.nombre}" />
                 </h:link>
             </h:column>
         </h:dataTable>
     </h:body>
 <!--    <ui:define name="content">
         <p:dataTable id="ods"
-                     value="#{objetivoController.getAllObjetivos}"
+                     value="{objetivoController.getObjetivos()}"
                      var="obj">
             <p:column headerText="ID">
                 <h:outputText value ="#(obj.nro)"/>
@@ -36,11 +41,11 @@
                 <h:outputText value ="#(obj.nombre)"/>
             </p:column>
             <p:column>
-                <p:commandLink actionListener="#{ObjetivoBean.remove(obj)}"
+                <p:commandLink actionListener="{ObjetivoBean.remove(obj)}"
                                value="Eliminar"
                                update="ods">
                     <p:confirm header="Confirmacion"
-                               message="Se eliminara #{obj.nombre}"
+                               message="Se eliminara {obj.nombre}"
                                icon="ui-icon-alert" />
                 </p:commandLink>
             </p:column>

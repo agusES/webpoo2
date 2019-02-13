@@ -56,13 +56,13 @@
 			<h:form class="form-signin">
 				<h2 class="form-signin-heading">#{msg['Signup']}</h2>
 
-				<h:inputText class="form-control" placeholder="#{msg['Username']}"
-					id="inputName" value="#{usuarioController.name}" required="true"
-					autofocus="true" />
+				<h:inputText class="form-control" 
+                                             id="inputName" value="#{usuarioController.name}" required="true"
+					/>
 
 				<h:inputSecret class="form-control" id="inputPassword"
 					value="#{usuarioController.password}"
-					placeholder="#{msg['Password']}" required="true" />
+					required="true" />
 
 				<h:selectBooleanCheckbox value="#{usuarioController.isAdmin}" />
 				<h:outputText value=" #{msg['isAdmin']}" />
