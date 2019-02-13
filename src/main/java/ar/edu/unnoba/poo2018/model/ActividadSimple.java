@@ -2,6 +2,7 @@ package ar.edu.unnoba.poo2018.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,11 +14,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Actividades_Simples")
 @PrimaryKeyJoinColumn(referencedColumnName="id")
-public class Simple extends Actividad {
+public class ActividadSimple extends Actividad {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "actividad")
 	private List<Impacto> impactos = new ArrayList<Impacto>();
+	
+    public ActividadSimple() {
+    }
+    
+    public ActividadSimple(String nombre, Date fechaInicio) {
+    	setNombre(nombre);
+    	setFechaInicio(fechaInicio);
+    }
 
 	public void addObjetivo(int peso, Objetivo objetivo) {
 		impactos.add(new Impacto(peso, objetivo));

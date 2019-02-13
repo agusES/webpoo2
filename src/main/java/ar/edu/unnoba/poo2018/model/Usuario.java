@@ -6,7 +6,6 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,6 +20,9 @@ public class Usuario {
     private String name;
     private String password;
     private boolean administrador;
+    
+    @Version
+    protected int version;
 
     public Usuario() {
     }
@@ -30,9 +32,6 @@ public class Usuario {
         this.password = password;
         this.administrador = administrador;
     }
-
-    @Version
-    protected int version;
 
     public long getId() {
         return id;

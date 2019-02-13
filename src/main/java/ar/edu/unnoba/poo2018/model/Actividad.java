@@ -55,7 +55,7 @@ public abstract class Actividad {
     private List<Usuario> responsables = new ArrayList<Usuario>();
 
     @Version
-    protected int version;
+    protected int version;  
 
     public long getNro() {
         return id;
