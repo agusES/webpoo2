@@ -12,13 +12,12 @@ public class ObjetivoBean {
 
     @PersistenceContext(unitName = "webpoo")
     EntityManager em;
-    
+
     public List<Objetivo> getAllObjetivos() {
         Query query = em.createNamedQuery("objetivo.allObjetivos");
         return query.getResultList();
     }
-    
-        
+
     public void create(Objetivo o) {
         em.persist(o);
         System.out.println("persistio");
@@ -28,42 +27,26 @@ public class ObjetivoBean {
         em.merge(o);
     }
 
-	public void create(Objetivo o) {
-		Query q = em.createQuery("SELECT o FROM Objetivo o where o.nombre = :value1");
-		q.setParameter("value1", o.getNombre());
-		Objetivo tmp;
-		try {
-			tmp = (Objetivo) q.getSingleResult();
-		} catch (Exception e) {
-			tmp = null;
-		}
-		if (tmp != null) {
-			em.persist(o);
-		}
-	}
+    public void remove(Objetivo o) {
+        System.out.print("Llego al remove");
+        em.remove(em.merge(o));
+        System.out.print("Pasó el remove");
+    }
 
-	public void Update(Objetivo o) {
-		em.merge(o);
-	}
+    public Objetivo find(Object id) {
+        return em.find(Objetivo.class, id);
+    }
 
-	public void remove(Objetivo o) {
-		em.remove(em.merge(o));
-	}
-
-	public Objetivo find(Object id) {
-		return em.find(Objetivo.class, id);
-	}
-
-	public Objetivo findByName(String name) {
-		Query query = em.createQuery("SELECT a FROM Actividad a where a.nombre = :value1");
-		query.setParameter("value1", name);
-		Objetivo objetivoq;
-		try {
-			objetivoq = (Objetivo) query.getSingleResult();
-		} catch (Exception e) {
-			objetivoq = null;
-		}
-		return objetivoq;
-	}
+    public Objetivo findByName(String name) {
+        Query query = em.createQuery("SELECT a FROM Actividad a where a.nombre = :value1");
+        query.setParameter("value1", name);
+        Objetivo objetivoq;
+        try {
+            objetivoq = (Objetivo) query.getSingleResult();
+        } catch (Exception e) {
+            objetivoq = null;
+        }
+        return objetivoq;
+    }
 
 }

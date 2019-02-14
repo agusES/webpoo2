@@ -10,15 +10,25 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-
+       
+        
 @ManagedBean(name = "objetivoController")
-@RequestScoped
+@SessionScoped
 public class ObjetivoController implements Serializable  {
     
     private String nombre;
 
     @EJB
     private ObjetivoBean objetivob;
+
+    public ObjetivoBean getObjetivob() {
+        return objetivob;
+    }
+
+    public void setObjetivob(ObjetivoBean objetivob) {
+        this.objetivob = objetivob;
+    }
+    
     
     private List<Objetivo> objetivos = new ArrayList<>();
     
@@ -66,7 +76,8 @@ public class ObjetivoController implements Serializable  {
     
     public void delete(Objetivo obj){
        // if(!sessionBacking.getUser().equals(user)){
-            objetivob.remove(obj);
+       System.out.println(obj);
+       objetivob.remove(obj);
         /*}else{
            FacesContext context = FacesContext.getCurrentInstance();
            FacesMessage message = new FacesMessage("No puede borrar este usuario");

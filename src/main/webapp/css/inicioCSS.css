@@ -18,6 +18,10 @@ body {
 	margin-bottom: 80px;
 }
 
+.facet[header] {
+    background-color: white;
+}
+
 .fas {
 	padding-left: 15px;
 	padding-right: 3px;
