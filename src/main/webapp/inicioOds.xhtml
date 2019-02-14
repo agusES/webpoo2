@@ -1,99 +1,114 @@
 <!DOCTYPE html>
 <html lang="#{idioma.language}" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 
-    <h:head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-        <link rel="stylesheet" href="css/inicioCSS.css" />
-        <title>#{msg['Objectives']}</title>
-    </h:head>
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+	<link rel="stylesheet" href="css/inicioCSS.css" />
+	<title>#{msg['Objectives']}</title>
+</h:head>
 
-    <f:view locale="#{idioma.locale}">
+<f:view locale="#{idioma.locale}">
 
-        <nav class="navbar navbar-expand navbar-light fixed-top"
-             style="background-color: #e3f2fd;">
+	<nav class="navbar navbar-expand navbar-light fixed-top"
+		style="background-color: #e3f2fd;">
 
-            <div class="container">
+		<div class="container">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><a href="inicio.xhtml"><span
-                                    class="fas fa-home"></span>#{msg['Home']}</a></li>
-                        <li class="nav-item active"><a href="inicioActivity.xhtml"><span
-                                    class="fas fa-file-alt"></span>#{msg['Activity']}</a></li>
-                        <li class="nav-item active"><a href="inicioOds.xhtml"><span
-                                    class="fas fa-book"></span>#{msg['Objectives']}</a></li>
-                        <li class="nav-item active"><a href="#"><span
-                                    class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav col-auto">
-                        <li><a href="#" class="nav-item active"
-                               data-target="#infoModal" data-toggle="modal"><span
-                                    class="fas fa-info"></span>#{msg['About']}</a></li>
-                        <li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
-                        <li><a href="inicio.xhtml"><span
-                                    class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li>
-                    </ul>
-                </div>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+				
+					<!-- 						<li class="nav-item active"><a -->
+					<!-- 							href="{usuarioController.inicio()}"><span -->
+					<!-- 								class="fas fa-home"></span>#{msg['Home']}</a></li> -->
 
-                <h:form>
-                    <h:selectOneMenu value="#{idioma.language}" onchange="submit()">
-                        <f:selectItem itemValue="es" itemLabel="Español" />
-                        <f:selectItem itemValue="en" itemLabel="English" />
-                        <f:selectItem itemValue="fr" itemLabel="Francais" />
-                    </h:selectOneMenu>
-                </h:form>
-            </div>
-        </nav>
+					<h:form>
+						<h:commandButton action="#{usuarioController.inicio()}"
+							value="Home" />
+					</h:form>
+					
+					<li class="nav-item active"><a href="inicioActivity.xhtml"><span
+							class="fas fa-file-alt"></span>#{msg['Activity']}</a></li>
+					<li class="nav-item active"><a href="inicioOds.xhtml"><span
+							class="fas fa-book"></span>#{msg['Objectives']}</a></li>
+					<li class="nav-item active"><a href="#"><span
+							class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
+				</ul>
+				<ul class="nav navbar-nav col-auto">
+					<li><a href="#" class="nav-item active"
+						data-target="#infoModal" data-toggle="modal"><span
+							class="fas fa-info"></span>#{msg['About']}</a></li>
+					<li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
 
-        <table class="table">
+					<!-- 						<li class="nav-item active"><a -->
+					<!-- 							data-toggle="{usuarioController.logout()}" href="#"><span -->
+					<!-- 								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li> -->
+
+					<h:form>
+						<h:commandButton action="#{usuarioController.logout()}"
+							value="Logout" />
+					</h:form>
+				</ul>
+			</div>
+
+			<h:form>
+				<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
+					<f:selectItem itemValue="es" itemLabel="Español" />
+					<f:selectItem itemValue="en" itemLabel="English" />
+					<f:selectItem itemValue="fr" itemLabel="Francais" />
+				</h:selectOneMenu>
+			</h:form>
+		</div>
+	</nav>
+
+	<table class="table">
 
 
-        </table>
+	</table>
 
-        <div class="wrapper" id="objetivos" >
-            <h:form id="objetivos">
-                <p:dataTable id="ods" value="#{objetivoController.getObjetivos()}" var="objetivo" style="background-color: white"  >
-                    <f:facet name="header" >Lista de Objetivos</f:facet>
+	<div class="wrapper" id="objetivos">
+		<h:form id="objetivos">
+			<p:dataTable id="ods" value="#{objetivoController.getObjetivos()}"
+				var="objetivo" style="background-color: white">
+				<f:facet name="header">Lista de Objetivos</f:facet>
 
-                    <p:column style="width:10%;">
-                        <f:facet name="header">Número</f:facet>
+				<p:column style="width:10%;">
+					<f:facet name="header">Número</f:facet>
                             #{objetivo.nro}
                     </p:column>
 
-                    <p:column style="width:70%;">
-                        <f:facet name="header">Nombre del objetivo</f:facet>
+				<p:column style="width:70%;">
+					<f:facet name="header">Nombre del objetivo</f:facet>
                             #{objetivo.nombre}
                     </p:column>
-                    <p:column style="width:20%;">
-                        <h:commandButton action="#{objetivoController.delete(objetivo)}"
-                                       value="Eliminar"
-                                       >
-                           
-                        </h:commandButton>
-                    </p:column>
+				<p:column style="width:20%;">
+					<h:commandButton action="#{objetivoController.delete(objetivo)}"
+						value="Eliminar">
 
-                </p:dataTable>
-            </h:form>
-        </div>
+					</h:commandButton>
+				</p:column>
 
-<!--        <p:dataTable id="ods"
+			</p:dataTable>
+		</h:form>
+	</div>
+
+	<!--        <p:dataTable id="ods"
                      value="{objetivoController.getAllObjetivos}"
                      var="obj">
             <p:column headerText="ID">
@@ -113,36 +128,36 @@
             </p:column>
         </p:dataTable>      -->
 
-        <div class="footer">
-            #{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
-        </div>
+	<div class="footer">
+		#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
+	</div>
 
-        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-tittle">#{msg['About']}</h3>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Close">
-                            <span aria-hidden="true">&#215;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            <span>#{msg['AboutUs']}</span>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-tittle">#{msg['About']}</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&#215;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						<span>#{msg['AboutUs']}</span>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-        <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    </f:view>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</f:view>
 </html>

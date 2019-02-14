@@ -5,15 +5,15 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-<link rel="stylesheet" href="css/inicioCSS.css" />
-<title>#{msg['Home']}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+	<link rel="stylesheet" href="css/inicioCSS.css" />
+	<title>#{msg['Home']}</title>
 </h:head>
 
 <body>
@@ -34,8 +34,6 @@
 
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="inicio.xhtml"><span
-								class="fas fa-home"></span>#{msg['Home']}</a></li>
 					</ul>
 					<ul class="nav navbar-nav col-auto">
 						<li><a href="#" class="nav-item active"
@@ -59,13 +57,11 @@
 			<h:form class="form-signin" id="signin">
 				<h2 class="form-signin-heading">#{msg['Login']}</h2>
 
-				<h:inputText class="form-control" 
-                                             id="inputName" value="#{usuarioController.name}"
-					/>
+				<h:inputText class="form-control" id="inputName"
+					value="#{usuarioController.name}" />
 
 				<h:inputSecret class="form-control" id="inputPassword"
-					value="#{usuarioController.password}"
-					/>
+					value="#{usuarioController.password}" />
 
 				<h:commandButton
 					class="btn btn-lg btn-primary btn-block text-uppercase"

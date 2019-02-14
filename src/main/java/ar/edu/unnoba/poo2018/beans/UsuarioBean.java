@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class UsuarioBean {
@@ -16,7 +17,7 @@ public class UsuarioBean {
         em.persist(user);
     }
 
-    public void Update(Usuario user) {
+    public void update(Usuario user) {
         em.merge(user);
     }
 
@@ -53,8 +54,12 @@ public class UsuarioBean {
             
         } catch (Exception e) {
             userq = null;
-            return false;
         }
         return false;
+    }
+    
+    public List<Usuario> getAllUsers(){
+        Query query = em.createNamedQuery("user.allUsers");
+        return query.getResultList();
     }
 }

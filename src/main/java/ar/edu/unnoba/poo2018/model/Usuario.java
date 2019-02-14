@@ -7,9 +7,19 @@ import javax.persistence.Version;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 
 @Entity
 @Table(name = "usuario")
+@NamedQueries({
+    @NamedQuery(name = "usuario.findbyNameAndPassword",
+            query = "SELECT u FROM Usuario u where u.name = :value1 and u.password = :value2"),
+    @NamedQuery(name = "usuario.allUsuarios",
+            query = "SELECT u FROM Usuario u"),
+})
+
 public class Usuario {
     
     @Id

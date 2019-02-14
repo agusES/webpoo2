@@ -4,17 +4,17 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-<link rel="stylesheet" href="css/inicioCSS.css" />
-<title>Panel de administrador</title>
-</head>
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+	<link rel="stylesheet" href="css/inicioCSS.css" />
+	<title>Panel de administrador</title>
+</h:head>
 
 <body>
 
@@ -34,8 +34,15 @@
 
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="inicio.xhtml"><span
-								class="fas fa-home"></span>#{msg['Home']}</a></li>
+
+<!-- 						<li class="nav-item active"><a -->
+<!-- 							href="{usuarioController.inicio()}"><span class="fas fa-home"></span>#{msg['Home']}</a></li> -->
+
+						<h:form>
+							<h:commandButton action="#{usuarioController.inicio()}"
+								value="Home" />
+						</h:form>
+
 						<li class="nav-item active"><a href="inicioActivity.xhtml"><span
 								class="fas fa-file-alt"></span>#{msg['Activity']}</a></li>
 						<li class="nav-item active"><a href="inicioOds.xhtml"><span
@@ -43,15 +50,29 @@
 						<li class="nav-item active"><a href="#"><span
 								class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
 					</ul>
+
 					<ul class="nav navbar-nav col-auto">
-						<li><a href="#" class="nav-item active"
-							data-target="#infoModal" data-toggle="modal"><span
-								class="fas fa-info"></span>#{msg['About']}</a></li>
-						<li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
-						<li><a href="inicio.xhtml"><span
-								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li>
+
+						<li class="nav-item active"><a href="#"
+							class="nav-item active" data-target="#infoModal"
+							data-toggle="modal"><span class="fas fa-info"></span>#{msg['About']}</a></li>
+
+						<li class="nav-item active"><a href="#"><span
+								class="fas fa-user"></span>#{usuarioController.getUserName()}</a></li>
+
+						<!-- 						<li class="nav-item active"><a -->
+						<!-- 							data-toggle="{usuarioController.logout()}" href="#"><span -->
+						<!-- 								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li> -->
+
+						<h:form>
+							<h:commandButton action="#{usuarioController.logout()}"
+								value="Logout" />
+						</h:form>
+
+
 					</ul>
 				</div>
+
 
 				<h:form>
 					<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
