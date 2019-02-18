@@ -4,7 +4,6 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-
 <h:head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="utf-8" />
@@ -19,114 +18,111 @@
 
 <f:view locale="#{idioma.locale}">
 
-	<nav class="navbar navbar-expand navbar-light fixed-top"
-		style="background-color: #e3f2fd;">
-
-		<div class="container">
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse">
-				<ul class="navbar-nav mr-auto">
-				
-					<!-- 						<li class="nav-item active"><a -->
-					<!-- 							href="{usuarioController.inicio()}"><span -->
-					<!-- 								class="fas fa-home"></span>#{msg['Home']}</a></li> -->
-
-					<h:form>
-						<h:commandButton action="#{usuarioController.inicio()}"
-							value="Home" />
-					</h:form>
-					
-					<li class="nav-item active"><a href="inicioActivity.xhtml"><span
-							class="fas fa-file-alt"></span>#{msg['Activity']}</a></li>
-					<li class="nav-item active"><a href="inicioOds.xhtml"><span
-							class="fas fa-book"></span>#{msg['Objectives']}</a></li>
-					<li class="nav-item active"><a href="#"><span
-							class="fas fa-clipboard"></span>#{msg['Results']}</a></li>
-				</ul>
-				<ul class="nav navbar-nav col-auto">
-					<li><a href="#" class="nav-item active"
-						data-target="#infoModal" data-toggle="modal"><span
-							class="fas fa-info"></span>#{msg['About']}</a></li>
-					<li><a href="#"><span class="fas fa-user"></span>#{usuarioController.name}</a></li>
-
-					<!-- 						<li class="nav-item active"><a -->
-					<!-- 							data-toggle="{usuarioController.logout()}" href="#"><span -->
-					<!-- 								class="fas fa-sign-out-alt"></span>#{msg['Logout']}</a></li> -->
-
-					<h:form>
-						<h:commandButton action="#{usuarioController.logout()}"
-							value="Logout" />
-					</h:form>
-				</ul>
-			</div>
-
+	<nav class="navbar navbar-expand navbar-light">
+		<ul class="navbar-nav" id="barra-izq">
 			<h:form>
-				<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
+				<h:commandButton action="#{usuarioController.inicio()}"
+					value="#{msg['Home']}" class="btn btn-link" />
+			</h:form>
+			<h:form>
+				<h:commandButton action="inicioActivity.xhtml?faces-redirect=true"
+					value="#{msg['Activity']}" class="btn btn-link" />
+			</h:form>
+			<h:form>
+				<h:commandButton action="inicioOds.xhtml?faces-redirect=true"
+					value="#{msg['Objectives']}" class="btn btn-link" />
+			</h:form>
+		</ul>
+
+		<ul class="navbar-nav ml-auto" id="barra-der">
+			<button type="button" data-toggle="modal" data-target="#infoModal"
+				class="btn btn-link">#{msg['About']}</button>
+			<h:form>
+				<h:commandButton action="#"
+					value="#{usuarioController.getUserName()}" class="btn btn-link" />
+			</h:form>
+			<h:form>
+				<h:commandButton action="#{usuarioController.logout()}"
+					value="#{msg['Logout']}" class="btn btn-link" />
+			</h:form>
+			<h:form>
+				<h:selectOneMenu value="#{idioma.language}" onchange="submit()"
+					class="cambiar-idioma">
 					<f:selectItem itemValue="es" itemLabel="Español" />
 					<f:selectItem itemValue="en" itemLabel="English" />
 					<f:selectItem itemValue="fr" itemLabel="Francais" />
 				</h:selectOneMenu>
 			</h:form>
-		</div>
+		</ul>
 	</nav>
 
-	<table class="table">
 
+	<div class="container-obj">
 
-	</table>
+		<h:form class="form-obj">
+			<h2 class="form-obj-heading">#{msg['AddObj']}</h2>
 
-	<div class="wrapper" id="objetivos">
-		<h:form id="objetivos">
-			<p:dataTable id="ods" value="#{objetivoController.getObjetivos()}"
-				var="objetivo" style="background-color: white">
-				<f:facet name="header">Lista de Objetivos</f:facet>
+			<label for="obj-name">#{msg['ObjName']}</label>
+			<h:inputText id="obj-name" value="#{objetivoController.nombre}"
+				required="true" />
 
-				<p:column style="width:10%;">
-					<f:facet name="header">Número</f:facet>
-                            #{objetivo.nro}
-                    </p:column>
+			<h:commandButton id="create-obj-btn"
+				class="btn btn-lg btn-primary btn-block text-uppercase"
+				action="#{objetivoController.crearObj()}" value="#{msg['Create']}" />
+		</h:form>
 
-				<p:column style="width:70%;">
-					<f:facet name="header">Nombre del objetivo</f:facet>
-                            #{objetivo.nombre}
-                    </p:column>
-				<p:column style="width:20%;">
-					<h:commandButton action="#{objetivoController.delete(objetivo)}"
-						value="Eliminar">
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
 
+			<p:dataTable class="table-obj" id="ods"
+				value="#{objetivoController.getObjetivos()}" var="objetivo"
+				scrollable="false" editable="true">
+
+				<f:facet name="header">#{msg['ObjList']}</f:facet>
+
+				<!-- 				<p:ajax event="rowEdit" listener="#{objetivoController.onRowEdit}" -->
+				<!-- 					update=":form:msgs" /> -->
+				<!-- 				<p:ajax event="rowEditCancel" listener="#{objetivoController.onRowCancel}" -->
+				<!-- 					update=":form:msgs" /> -->
+
+				<p:column headerText="#{msg['ObjName']}" style="width: 50%">
+				#{objetivo.nombre}
+				
+					<!-- 					<p:cellEditor> -->
+
+					<!-- 					<f:facet name="output"> -->
+					<!-- 						<h:outputText value="#{objetivo.nombre}" /> -->
+					<!-- 					</f:facet> -->
+
+					<!-- 					<f:facet name="input"> -->
+					<!-- 						<p:inputText value="#{objetivo.nombre}" /> -->
+					<!-- 					</f:facet> -->
+
+					<!-- 					</p:cellEditor> -->
+				</p:column>
+
+				<p:column headerText="#{msg['PercentageReached']}"
+					style="width: 30%">
+					<f:facet name="output">
+						<h:outputText value="Hacer" />
+					</f:facet>
+				</p:column>
+
+				<!-- 				<p:column headerText="#{msg['ChangeName']}" style="width:10%px"> -->
+				<!-- 					<p:rowEditor /> -->
+				<!-- 				</p:column> -->
+
+				<p:column headerText="#{msg['Delete']}" style="width: 20%">
+					<h:commandButton id="btnDelete" value="#{msg['Delete']}"
+						action="#{objetivoController.delete(objetivo)}"
+						class="btn btn-lg btn-light btn-block">
 					</h:commandButton>
 				</p:column>
 
 			</p:dataTable>
 		</h:form>
-	</div>
 
-	<!--        <p:dataTable id="ods"
-                     value="{objetivoController.getAllObjetivos}"
-                     var="obj">
-            <p:column headerText="ID">
-                <h:outputText value ="#(obj.nro)"/>
-            </p:column>
-            <p:column headerText="Nombre">
-                <h:outputText value ="#(obj.nombre)"/>
-            </p:column>
-            <p:column>
-                <p:commandLink actionListener="{ObjetivoBean.remove(obj)}"
-                               value="Eliminar"
-                               update="ods">
-                    <p:confirm header="Confirmacion"
-                               message="Se eliminara {obj.nombre}"
-                               icon="ui-icon-alert" />
-                </p:commandLink>
-            </p:column>
-        </p:dataTable>      -->
+	</div>
 
 	<div class="footer">
 		#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
@@ -143,7 +139,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>
+					<p style="text-align: justify">
 						<span>#{msg['AboutUs']}</span>
 					</p>
 				</div>

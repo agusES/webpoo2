@@ -2,54 +2,112 @@ body {
 	background-color: Snow;
 }
 
+.navbar {
+	background-color: #e3f2fd;
+	height: 2em;
+	position: fixed;
+	right: 0;
+	top: 0;
+	left: 0;
+}
+
 .footer {
 	position: fixed;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: 2px;
+	height: 1.5em;
 	background-color: #efefef;
 	text-align: center;
 	color: black;
 }
 
-.wrapper {
-	margin-top: 80px;
-	margin-bottom: 80px;
+#login-container, #signup-container {
+	position: relative;
 }
 
-.facet[header] {
-    background-color: white;
-}
-
-.fas {
-	padding-left: 15px;
-	padding-right: 3px;
+#login, #signup {
+	height: auto;
+	width: 40em;
+	margin: 0;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -35%)
 }
 
 .form-signin {
 	margin: auto;
 	max-width: 380px;
-	padding: 15px 35px 45px;
-	background-color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 15px 35px;
+	background-color: white;
+	border: 1px solid lightgray;
 }
 
 .form-signin input {
+	height: auto;
+	padding: 10px;
 	margin: 0 0 15px;
+}
+
+.admin-check-box {
+	display: block;
+    position: relative;
+    margin-bottom: 15px;
 }
 
 .form-signin-heading {
 	margin-bottom: 35px;
 }
 
-.checkbox {
-	font-weight: normal;
+.container-obj {
+	position: absolute;
+	width: 80%;
+	top: 4em;
+	right: 5%;
+	left: 5%;
+	margin: auto;
 }
 
-.form-control {
-	position: relative;
-	font-size: 16px;
-	height: auto;
-	padding: 10px;
+.table-obj {
+	min-width: 520px;
+	width: auto;
+	margin-left: 340px;
+}
+
+.form-obj {
+	float: left;
+	width: 320px;
+	height: 240px;
+	padding: 20px;
+	border: 2px solid lightgray;
+	border-radius: 5px;
+}
+
+.form-obj input {
+	width: 100%;
+	border-radius: 3px;
+	margin-bottom: 25px;
+}
+
+.form-obj-heading {
+	margin-bottom: 25px;
+}
+
+label {
+	width: 100%;
+}
+
+#barra-izq {
+	margin-left: 10em;
+}
+
+#barra-der {
+	margin-right: 10em;
+}
+
+.cambiar-idioma {
+	margin: 0 1em 0 1em;
+	height: 2em;
 }

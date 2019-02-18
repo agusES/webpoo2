@@ -22,6 +22,7 @@ public class AuthorizationListener implements PhaseListener {
 		Usuario currentUser = null;
 		
 		try {
+			System.out.println("Estamos en la página " + currentPage);
 			usuarioController = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{usuarioController}",
 					UsuarioController.class);
 		} catch (Exception e) {

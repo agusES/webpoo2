@@ -20,7 +20,7 @@ public class ObjetivoBean {
 
     public void create(Objetivo o) {
         em.persist(o);
-        System.out.println("persistio");
+        System.out.println("El objetivo" + o + "fue creado.");
     }
 
     public void update(Objetivo o) {
@@ -28,9 +28,9 @@ public class ObjetivoBean {
     }
 
     public void remove(Objetivo o) {
-        System.out.print("Llego al remove");
+        System.out.print("ObjetivoBean.remove(). Objetivo = " + o);
         em.remove(em.merge(o));
-        System.out.print("Pasó el remove");
+        System.out.print("Pasó el remove. Objetivo = " + o);
     }
 
     public Objetivo find(Object id) {

@@ -19,42 +19,27 @@
 <body>
 
 	<f:view locale="#{idioma.locale}">
+		<nav class="navbar navbar-expand-md navbar-light">
 
-		<nav class="navbar navbar-expand navbar-light fixed-top"
-			style="background-color: #e3f2fd;">
+			<ul class="navbar-nav" id="barra-izq">
+			</ul>
 
-			<div class="container">
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-					</ul>
-					<ul class="nav navbar-nav col-auto">
-						<li><a href="#" class="nav-item active"
-							data-target="#infoModal" data-toggle="modal"><span
-								class="fas fa-info"></span>#{msg['About']}</a></li>
-					</ul>
-				</div>
-
+			<ul class="navbar-nav ml-auto" id="barra-der">
+				<button type="button" data-toggle="modal" data-target="#infoModal"
+					class="btn btn-link">#{msg['About']}</button>
 				<h:form>
-					<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
+					<h:selectOneMenu value="#{idioma.language}" onchange="submit()"
+						class="cambiar-idioma">
 						<f:selectItem itemValue="es" itemLabel="Español" />
 						<f:selectItem itemValue="en" itemLabel="English" />
 						<f:selectItem itemValue="fr" itemLabel="Francais" />
 					</h:selectOneMenu>
 				</h:form>
-
-			</div>
+			</ul>
 		</nav>
 
-		<div class="wrapper">
-			<h:form class="form-signin" id="signin">
+		<div class="wrapper" id="login">
+			<h:form class="form-signin">
 				<h2 class="form-signin-heading">#{msg['Login']}</h2>
 
 				<h:inputText class="form-control" id="inputName"
@@ -72,7 +57,6 @@
 			</h:form>
 		</div>
 
-
 		<div class="footer">
 			#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
 		</div>
@@ -88,7 +72,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p>
+						<p style="text-align: justify">
 							<span>#{msg['AboutUs']}</span>
 						</p>
 					</div>

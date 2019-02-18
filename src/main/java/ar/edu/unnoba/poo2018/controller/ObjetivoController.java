@@ -3,96 +3,86 @@ package ar.edu.unnoba.poo2018.controller;
 import ar.edu.unnoba.poo2018.beans.ObjetivoBean;
 import ar.edu.unnoba.poo2018.model.Objetivo;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-       
-        
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
+
 @ManagedBean(name = "objetivoController")
 @SessionScoped
-public class ObjetivoController implements Serializable  {
-    
-    private String nombre;
+public class ObjetivoController implements Serializable {
 
-    @EJB
-    private ObjetivoBean objetivob;
+	private static final long serialVersionUID = 1L;
 
-    public ObjetivoBean getObjetivob() {
-        return objetivob;
-    }
+	private String nombre;
 
-    public void setObjetivob(ObjetivoBean objetivob) {
-        this.objetivob = objetivob;
-    }
-    
-    
-    private List<Objetivo> objetivos = new ArrayList<>();
-    
-    @PostConstruct
-    public void init() {
-       // objetivo = new Objetivo();
-    }
-
-    public String crearObj(){
-        try{
-            System.out.println("-----------------------crearObj()");
-            Objetivo o = new Objetivo(nombre);
-            objetivob.create(o);
-            System.out.println(o);
-            System.out.println("----------------------- FIN - crearObj()");
-        }catch(Exception e){
-            System.out.println("-----------------------ERROR crearObj()");
-            e.printStackTrace();
-            System.out.println("-----------------------FIN ERROR - crearObj()");
-            return "fallo";
-        }
-
-        System.out.println("-----------------------");
-        System.out.println(nombre);
-        System.out.println("-----------------------");
-        return "exito";
+	@EJB
+	private ObjetivoBean objetivob;
+	
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Car Edited", ((Objetivo) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
-    public List<Objetivo> getObjetivos() {
-        return objetivob.getAllObjetivos();
-    }
-    
-   
-    
-    //
-    
-//    public String update(){
-//        try{
-//            objetivob.update(objetivo);
-//            return "/users/index?faces-redirect=true";
-//        }catch(Exception e){
-//            return null;
-//        }
-//    }
-    
-    public void delete(Objetivo obj){
-       // if(!sessionBacking.getUser().equals(user)){
-       System.out.println(obj);
-       objetivob.remove(obj);
-        /*}else{
-           FacesContext context = FacesContext.getCurrentInstance();
-           FacesMessage message = new FacesMessage("No puede borrar este usuario");
-           context.addMessage(null, message);
-        }*/
-    } 
-    public String getNombre() {
-        return nombre;
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Objetivo) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+	public String crearObj() {
+		try {
+			Objetivo o = new Objetivo(nombre);
+			objetivob.create(o);
+			System.out.print("Se creó el objetivo " + o);
+		} catch (Exception e) {
+			System.out.print("Algo salió mal en ObjetivoController.crearObj()");
+			return "fallo";
+		}
+		return "exito";
+	}
+
+	public List<Objetivo> getObjetivos() {
+		return objetivob.getAllObjetivos();
+	}
+
+    public void update(Objetivo obj){
+        try{
+        	System.out.println("Se actualizará el objetivo con nombre" + obj);
+            objetivob.update(obj);
+            System.out.println("Ahora obj = " + obj);
+        }catch(Exception e){
+        	System.out.println("Algo salió mal en ObjetivoController.update()");
+        }
     }
-    
-    //
-    
-    
+
+	public void delete(Objetivo obj) {
+		System.out.print("entramos a ObjetivoController.delete(). Objetivo = " + obj);
+//		if (!usuarioController.getUser().equals(user)) {
+		objetivob.remove(obj);
+//		} else {
+//			FacesContext context = FacesContext.getCurrentInstance();
+//			FacesMessage message = new FacesMessage("No puede borrar este usuario");
+//			context.addMessage(null, message);
+//		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public ObjetivoBean getObjetivob() {
+		return objetivob;
+	}
+
+	public void setObjetivob(ObjetivoBean objetivob) {
+		this.objetivob = objetivob;
+	}
 }

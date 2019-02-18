@@ -19,58 +19,48 @@
 <body>
 
 	<f:view locale="#{idioma.locale}">
+		<nav class="navbar navbar-expand-md navbar-light">
 
-		<nav class="navbar navbar-expand navbar-light fixed-top"
-			style="background-color: #e3f2fd;">
-			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="inicio.xhtml"><span
-								class="fas fa-home"></span>#{msg['Home']}</a></li>
-					</ul>
-					
-					<ul class="nav navbar-nav col-auto">
-						<li><a href="#" class="nav-item active"
-							data-target="#infoModal" data-toggle="modal"><span
-								class="fas fa-info"></span>#{msg['About']}</a></li>
-					</ul>
+			<ul class="navbar-nav" id="barra-izq">
+			</ul>
 
-					<h:form>
-						<h:selectOneMenu value="#{idioma.language}" onchange="submit()">
-							<f:selectItem itemValue="es" itemLabel="Español" />
-							<f:selectItem itemValue="en" itemLabel="English" />
-							<f:selectItem itemValue="fr" itemLabel="Francais" />
-						</h:selectOneMenu>
-
-					</h:form>
-				</div>
-			</div>
+			<ul class="navbar-nav ml-auto" id="barra-der">
+				<button type="button" data-toggle="modal" data-target="#infoModal"
+					class="btn btn-link">#{msg['About']}</button>
+				<h:form>
+					<h:selectOneMenu value="#{idioma.language}" onchange="submit()"
+						class="cambiar-idioma">
+						<f:selectItem itemValue="es" itemLabel="Español" />
+						<f:selectItem itemValue="en" itemLabel="English" />
+						<f:selectItem itemValue="fr" itemLabel="Francais" />
+					</h:selectOneMenu>
+				</h:form>
+			</ul>
 		</nav>
 
 		<div class="wrapper">
-			<h:form class="form-signin">
+			<h:form class="form-signin" id="signup">
 				<h2 class="form-signin-heading">#{msg['Signup']}</h2>
 
-				<h:inputText class="form-control" 
-                                             id="inputName" value="#{usuarioController.name}" required="true"
-					/>
+				<h:inputText class="form-control" id="inputName"
+					value="#{usuarioController.name}" required="true" />
 
 				<h:inputSecret class="form-control" id="inputPassword"
-					value="#{usuarioController.password}"
-					required="true" />
+					value="#{usuarioController.password}" required="true" />
 
-				<h:selectBooleanCheckbox value="#{usuarioController.isAdmin}" />
-				<h:outputText value=" #{msg['isAdmin']}" />
+				<div class="admin-check-box">
+					<h:selectBooleanCheckbox value="#{usuarioController.isAdmin}" />
+					<h:outputText value=" #{msg['isAdmin']}" />
+				</div>
 
 				<h:commandButton
 					class="btn btn-lg btn-primary btn-block text-uppercase"
 					action="#{usuarioController.register()}" value="#{msg['Submit']}" />
+
+				<h:commandButton
+					class="btn btn-lg btn-secondary btn-block text-uppercase"
+					action="inicio.xhtml?faces-redirect=true" value="#{msg['Back']}" />
+
 			</h:form>
 		</div>
 
@@ -89,7 +79,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p>
+						<p style="text-align: justify">
 							<span>#{msg['AboutUs']}</span>
 						</p>
 					</div>
