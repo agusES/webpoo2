@@ -9,17 +9,19 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+	<link rel="stylesheet" href="css/tema.css" />
+
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-	<link rel="stylesheet" href="css/inicioCSS.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 	<title>#{msg['Activity']}</title>
 </h:head>
@@ -65,29 +67,115 @@
 			</ul>
 		</nav>
 
-		<div class="wrapper">
-			<h:form class="form-signin" id="addActivity">
+		<div class="container-activities">
 
-				<h2 class="form-signin-heading">#{msg['AddActivity']}</h2>
+			<p:dataTable class="table-activities" id="activities"
+				value="#{actividadController.getActividades()}" var="actividad"
+				scrollable="false" editable="true">
 
-				<h:inputText class="form-control"
-					label="Nombre de la nueva actividad" id="inputName"
-					value="#{simple.name}" required="true" />
+				<f:facet name="header">#{msg['ActivityList']}</f:facet>
 
-				<p:outputLabel for="fechaInicio" value="Fecha de inicio:" />
-				<p:calendar id="fechaInicio" value="#{simple.startDate}" />
+				<p:column headerText="#{msg['Name']}">
+				#{actividad.nombre}</p:column>
 
-				<h:commandButton
-					class="btn btn-lg btn-primary btn-block text-uppercase"
-					action="#{simple.create()}" value="Crear" />
+				<p:column headerText="#{msg['StartDate']}">
+				#{objetivo.fechaInicio}</p:column>
 
-			</h:form>
-		</div>
+				<p:column headerText="#{msg['EndDate']}">
+				#{objetivo.fechaFin}</p:column>
 
-		<div class="wrapper">
-			<h:form class="form-signin" id="assignActivity">
-				<h2 class="form-signin-heading">#{msg['AssignActivity']}</h2>
-			</h:form>
+				<p:column headerText="#{msg['Resolution']}">
+				#{objetivo.resolucion}</p:column>
+
+				<p:column headerText="#{msg['CaseFile']}">
+				#{objetivo.expediente}</p:column>
+
+				<p:column headerText="#{msg['Announcement']}">
+				#{objetivo.convocatoria}</p:column>
+
+				<p:column headerText="#{msg['StrategicLine']}">
+				#{objetivo.linea}</p:column>
+
+				<p:column headerText="#{msg['Ambit']}">
+				#{objetivo.ambito}</p:column>
+
+			</p:dataTable>
+
+			<div class="form-activity">
+
+				<p:tabView>
+					<p:tab title="#{msg['AddSimpleActivity']}">
+						<h:form id="add-simple-activity">
+							<table id="form-simple">
+								<tr class="columna">
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+
+								<tr class="columna">
+									<td><label for="activity-name">#{msg['Name']}</label> <h:inputText
+											id="activity-name" value="#{actividadSimpleController.name}"
+											required="true" /></td>
+
+									<td><label for="fecha-inicio">#{msg['StartDate']}</label>
+										<p:calendar id="fecha-inicio"
+											value="#{actividadSimpleController.startDate}" mode="popup"
+											showOn="focus" locale="es" /></td>
+
+									<td><label for="fecha-final">#{msg['EndDate']}</label> <p:calendar
+											id="fecha-final" value="#{actividadSimpleController.endDate}"
+											mode="popup" showOn="focus" locale="es" /></td>
+								</tr>
+
+								<tr class="columna">
+									<td><label for="resolucion">#{msg['Resolution']}</label> <h:inputText
+											id="resolucion"
+											value="#{actividadSimpleController.resolucion}"
+											required="true" /></td>
+
+									<td><label for="expediente">#{msg['CaseFile']}</label> <h:inputText
+											id="expediente"
+											value="#{actividadSimpleController.expediente}"
+											required="true" /></td>
+
+									<td><label for="convocatoria">#{msg['Announcement']}</label>
+										<h:inputText id="convocatoria"
+											value="#{actividadSimpleController.convocatoria}"
+											required="true" /></td>
+								</tr>
+
+								<tr class="columna">
+									<td><label for="linea-estrategica">#{msg['StrategicLine']}</label>
+										<h:inputText id="linea-estrategica"
+											value="#{actividadSimpleController.linea}" required="true" /></td>
+
+
+									<td><label for="ambito">#{msg['Ambit']}</label> <h:inputText
+											id="ambito" value="#{actividadSimpleController.ambito}"
+											required="true" /></td>
+
+									<td><h:commandButton class="btn btn-secondary btn-block"
+											action="#{actividadSimpleController.create()}"
+											value="#{msg['Create']}" /></td>
+								</tr>
+							</table>
+						</h:form>
+					</p:tab>
+
+					<p:tab title="#{msg['AddCompoundActivity']}">
+						<h:form id="add-compound-activity">
+							<p>Hacer</p>
+						</h:form>
+					</p:tab>
+
+					<p:tab title="#{msg['AssignActivity']}">
+						<h:form id="assign-activity">
+							<p>Hacer</p>
+						</h:form>
+					</p:tab>
+				</p:tabView>
+			</div>
 		</div>
 
 		<div class="footer">

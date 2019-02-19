@@ -15,6 +15,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,128 +23,127 @@ import javax.persistence.Version;
 import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 
-@Entity
+@Entity(name = "actividades")
 @Table(name = "Actividades")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = "getActividades", query = "SELECT a FROM actividades a")
+
 public abstract class Actividad {
 
-    @Id
-    @SequenceGenerator(name="ID_ACTIVIDAD_SEQ", sequenceName="SEQ_ACTIVIDAD", allocationSize=1, initialValue=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_ACTIVIDAD_SEQ")
-    private long id;
-    
-    private String nombre;
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
-    @Temporal(TemporalType.DATE)
-    private Date fechaFin;
-    private String resolucion;
-    private String expediente;
+	@Id
+	@SequenceGenerator(name = "ID_ACTIVIDAD_SEQ", sequenceName = "SEQ_ACTIVIDAD", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ACTIVIDAD_SEQ")
+	private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Convocatoria convocatoria;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private LineaEstrategica linea;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Ambito ambito;
+	private String nombre;
+	@Temporal(TemporalType.DATE)
+	private Date fechaInicio;
+	@Temporal(TemporalType.DATE)
+	private Date fechaFin;
+	private String resolucion;
+	private String expediente;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "Responsables",
-            joinColumns = @JoinColumn(name = "actividad_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id")
-    )
-    private List<Usuario> responsables = new ArrayList<Usuario>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Convocatoria convocatoria;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private LineaEstrategica linea;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Ambito ambito;
 
-    @Version
-    protected int version;  
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "Responsables", joinColumns = @JoinColumn(name = "actividad_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	private List<Usuario> responsables = new ArrayList<Usuario>();
 
-    public long getNro() {
-        return id;
-    }
+	@Version
+	protected int version;
 
-    public void setNro(long id) {
-        this.id = id;
-    }
+	public long getNro() {
+		return id;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setNro(long id) {
+		this.id = id;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
 
-    public Date getFechaFin() {
-        return fechaFin;
-    }
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
+	public Date getFechaFin() {
+		return fechaFin;
+	}
 
-    public String getResolucion() {
-        return resolucion;
-    }
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
 
-    public void setResolucion(String resolucion) {
-        this.resolucion = resolucion;
-    }
+	public String getResolucion() {
+		return resolucion;
+	}
 
-    public String getExpediente() {
-        return expediente;
-    }
+	public void setResolucion(String resolucion) {
+		this.resolucion = resolucion;
+	}
 
-    public void setExpediente(String expediente) {
-        this.expediente = expediente;
-    }
+	public String getExpediente() {
+		return expediente;
+	}
 
-    public Convocatoria getConvocatoria() {
-        return convocatoria;
-    }
+	public void setExpediente(String expediente) {
+		this.expediente = expediente;
+	}
 
-    public void setConvocatoria(Convocatoria convocatoria) {
-        this.convocatoria = convocatoria;
-    }
+	public Convocatoria getConvocatoria() {
+		return convocatoria;
+	}
 
-    public LineaEstrategica getLinea() {
-        return linea;
-    }
+	public void setConvocatoria(Convocatoria convocatoria) {
+		this.convocatoria = convocatoria;
+	}
 
-    public void setLinea(LineaEstrategica linea) {
-        this.linea = linea;
-    }
+	public LineaEstrategica getLinea() {
+		return linea;
+	}
 
-    public Ambito getAmbito() {
-        return ambito;
-    }
+	public void setLinea(LineaEstrategica linea) {
+		this.linea = linea;
+	}
 
-    public void setAmbito(Ambito ambito) {
-        this.ambito = ambito;
-    }
+	public Ambito getAmbito() {
+		return ambito;
+	}
 
-    public void addUsuario(Usuario u) {
-        responsables.add(u);
-    }
+	public void setAmbito(Ambito ambito) {
+		this.ambito = ambito;
+	}
 
-    public void removeUsuario(Usuario u) {
-        responsables.remove(u);
-    }
+	public void addUsuario(Usuario u) {
+		responsables.add(u);
+	}
 
-    @Override
-    public String toString() {
-        return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin="
-                + fechaFin + ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria="
-                + convocatoria + ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
-    }
+	public void removeUsuario(Usuario u) {
+		responsables.remove(u);
+	}
 
-    public abstract List<Impacto> getImpactos();
+	@Override
+	public String toString() {
+		return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria=" + convocatoria
+				+ ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
+	}
+
+	public abstract List<Impacto> getImpactos();
 
 }

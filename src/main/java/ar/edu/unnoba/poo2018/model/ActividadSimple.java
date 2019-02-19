@@ -13,20 +13,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Actividades_Simples")
-@PrimaryKeyJoinColumn(referencedColumnName="id")
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class ActividadSimple extends Actividad {
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "actividad")
 	private List<Impacto> impactos = new ArrayList<Impacto>();
-	
-    public ActividadSimple() {
-    }
-    
-    public ActividadSimple(String nombre, Date fechaInicio) {
-    	setNombre(nombre);
-    	setFechaInicio(fechaInicio);
-    }
+
+	public ActividadSimple() {
+	}
+
+	public ActividadSimple(String nombre, Date fechaInicio, Date endDate, String resolucion, String expediente,
+			Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
+		setNombre(nombre);
+		setFechaInicio(fechaInicio);
+	}
 
 	public void addObjetivo(int peso, Objetivo objetivo) {
 		impactos.add(new Impacto(peso, objetivo));
@@ -42,7 +43,7 @@ public class ActividadSimple extends Actividad {
 
 	@Override
 	public String toString() {
-		return "Simple: "+ getNombre() +" [impactos=" + impactos + "]";
+		return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
 	}
-	
+
 }

@@ -8,11 +8,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-	<link rel="stylesheet" href="css/inicioCSS.css" />
+	<link rel="stylesheet" href="css/tema.css" />
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
 	<title>#{msg['Objectives']}</title>
 </h:head>
 
@@ -60,9 +68,9 @@
 	<div class="container-obj">
 
 		<h:form class="form-obj">
-			<h2 class="form-obj-heading">#{msg['AddObj']}</h2>
+			<h2 class="form-heading">#{msg['AddObj']}</h2>
 
-			<label for="obj-name">#{msg['ObjName']}</label>
+			<label for="obj-name">#{msg['Name']}</label>
 			<h:inputText id="obj-name" value="#{objetivoController.nombre}"
 				required="true" />
 
@@ -85,7 +93,7 @@
 				<!-- 				<p:ajax event="rowEditCancel" listener="#{objetivoController.onRowCancel}" -->
 				<!-- 					update=":form:msgs" /> -->
 
-				<p:column headerText="#{msg['ObjName']}" style="width: 50%">
+				<p:column headerText="#{msg['Name']}" style="width: 50%">
 				#{objetivo.nombre}
 				
 					<!-- 					<p:cellEditor> -->
@@ -150,10 +158,5 @@
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </f:view>
 </html>

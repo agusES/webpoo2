@@ -9,6 +9,7 @@ body {
 	right: 0;
 	top: 0;
 	left: 0;
+	z-index: 1;
 }
 
 .footer {
@@ -20,6 +21,7 @@ body {
 	background-color: #efefef;
 	text-align: center;
 	color: black;
+	z-index: 1;
 }
 
 #login-container, #signup-container {
@@ -61,19 +63,24 @@ body {
 	margin-bottom: 35px;
 }
 
-.container-obj {
+.container-obj, .container-activities {
 	position: absolute;
 	width: 80%;
 	top: 4em;
 	right: 5%;
 	left: 5%;
 	margin: auto;
+
 }
 
 .table-obj {
 	min-width: 520px;
 	width: auto;
 	margin-left: 340px;
+}
+
+.table-activities {
+	width: 100%;
 }
 
 .form-obj {
@@ -85,18 +92,58 @@ body {
 	border-radius: 5px;
 }
 
-.form-obj input {
+.form-activity {
+	margin-top: 3em;
 	width: 100%;
+	height: auto;
+}
+
+.form-activity button {
+	margin-bottom: 1em;
+}
+
+#add-simple-activity, #add-compound-activity, #assign-activity {
+	height: fit-content;
+	padding: 1em;
+	border: 1px solid lightgray;
+	margin-bottom: 3em;
+}
+
+.btn-secondary {
+	margin-bottom: 0;
+}
+
+.form-obj input, .form-activity input {
+	width: auto;
 	border-radius: 3px;
+	margin-bottom: 10px;
+}
+
+.columna {
+	padding: 10px;
+}
+
+.form-heading {
 	margin-bottom: 25px;
 }
 
-.form-obj-heading {
-	margin-bottom: 25px;
+#form-simple {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#form-simple input {
+	float: right;
+	width: calc(100% - 200px);
+	margin-bottom: 0.5em
 }
 
 label {
-	width: 100%;
+	text-align: right;
+	float: left;
+	width: 200px;
+	padding-right: 2em;
+	margin-bottom: 0.5em;
 }
 
 #barra-izq {

@@ -1,6 +1,9 @@
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Actividad;
+
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +14,13 @@ public class ActividadBean {
 
     @PersistenceContext(unitName = "webpoo")
     EntityManager em;
+    
+    public List<Actividad> getActividades() {
+    	System.out.print("ActividadBean.getActividades()");
+//    	Query query = em.createNamedQuery("actividad.getActividades");
+    	Query query = em.createQuery("SELECT a FROM actividades a");
+        return query.getResultList();
+    }
     
     public void create(Actividad act) {
         em.persist(act);
@@ -39,4 +49,6 @@ public class ActividadBean {
         }
         return actividadq;
     }
+    
+    
 }
