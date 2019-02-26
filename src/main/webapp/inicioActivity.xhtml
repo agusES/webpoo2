@@ -1,351 +1,357 @@
 <!DOCTYPE html>
 <html
-	lang="#{idioma.language}"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+    lang="#{idioma.language}"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui"
+    xmlns:of="http://omnifaces.org/functions"
+    >
 
-<h:head>
-	<meta
-		http-equiv="X-UA-Compatible"
-		content="IE=edge" />
-	<meta charset="utf-8" />
-	<meta
-		name="viewport"
-		content="width=device-width, initial-scale=1" />
+    <h:head>
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge" />
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1" />
 
-	<link
-		rel="stylesheet"
-		href="css/tema.css" />
+        <link
+            rel="stylesheet"
+            href="css/tema.css" />
 
-	<link
-		rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-	<link
-		rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
 
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-	<title>#{msg['Activity']}</title>
-</h:head>
+        <title>#{msg['Activity']}</title>
+    </h:head>
 
-<body>
+    <body>
 
-	<f:view locale="#{idioma.locale}">
-		<nav class="navbar navbar-expand navbar-light">
-			<ul
-				class="navbar-nav"
-				id="barra-izq">
-				<h:form>
-					<h:commandButton
-						action="#{usuarioController.inicio()}"
-						value="#{msg['Home']}"
-						class="btn btn-link" />
-				</h:form>
-				<h:form>
-					<h:commandButton
-						action="inicioActivity.xhtml?faces-redirect=true"
-						value="#{msg['Activity']}"
-						class="btn btn-link" />
-				</h:form>
-				<h:form>
-					<h:commandButton
-						action="inicioOds.xhtml?faces-redirect=true"
-						value="#{msg['Objectives']}"
-						class="btn btn-link" />
-				</h:form>
-			</ul>
+        <f:view locale="#{idioma.locale}">
+            <nav class="navbar navbar-expand navbar-light">
+                <ul
+                    class="navbar-nav"
+                    id="barra-izq">
+                    <h:form>
+                        <h:commandButton
+                            action="#{usuarioController.inicio()}"
+                            value="#{msg['Home']}"
+                            class="btn btn-link" />
+                    </h:form>
+                    <h:form>
+                        <h:commandButton
+                            action="inicioActivity.xhtml?faces-redirect=true"
+                            value="#{msg['Activity']}"
+                            class="btn btn-link" />
+                    </h:form>
+                    <h:form>
+                        <h:commandButton
+                            action="inicioOds.xhtml?faces-redirect=true"
+                            value="#{msg['Objectives']}"
+                            class="btn btn-link" />
+                    </h:form>
+                </ul>
 
-			<ul
-				class="navbar-nav ml-auto"
-				id="barra-der">
-				<button
-					type="button"
-					data-toggle="modal"
-					data-target="#infoModal"
-					class="btn btn-link">#{msg['About']}</button>
-				<h:form>
-					<h:commandButton
-						action="#"
-						value="#{usuarioController.getUserName()}"
-						class="btn btn-link" />
-				</h:form>
-				<h:form>
-					<h:commandButton
-						action="#{usuarioController.logout()}"
-						value="#{msg['Logout']}"
-						class="btn btn-link" />
-				</h:form>
-				<h:form>
-					<h:selectOneMenu
-						value="#{idioma.language}"
-						onchange="submit()"
-						class="cambiar-idioma">
-						<f:selectItem
-							itemValue="es"
-							itemLabel="Español" />
-						<f:selectItem
-							itemValue="en"
-							itemLabel="English" />
-						<f:selectItem
-							itemValue="fr"
-							itemLabel="Francais" />
-					</h:selectOneMenu>
-				</h:form>
-			</ul>
-		</nav>
+                <ul
+                    class="navbar-nav ml-auto"
+                    id="barra-der">
+                    <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#infoModal"
+                        class="btn btn-link">#{msg['About']}</button>
+                    <h:form>
+                        <h:commandButton
+                            action="#"
+                            value="#{usuarioController.getUserName()}"
+                            class="btn btn-link" />
+                    </h:form>
+                    <h:form>
+                        <h:commandButton
+                            action="#{usuarioController.logout()}"
+                            value="#{msg['Logout']}"
+                            class="btn btn-link" />
+                    </h:form>
+                    <h:form>
+                        <h:selectOneMenu
+                            value="#{idioma.language}"
+                            onchange="submit()"
+                            class="cambiar-idioma">
+                            <f:selectItem
+                                itemValue="es"
+                                itemLabel="Español" />
+                            <f:selectItem
+                                itemValue="en"
+                                itemLabel="English" />
+                            <f:selectItem
+                                itemValue="fr"
+                                itemLabel="Francais" />
+                        </h:selectOneMenu>
+                    </h:form>
+                </ul>
+            </nav>
 
-		<div class="container-activities">
+            <div class="container-activities">
 
-			<h:form>
-				<p:dataTable
-					class="table-activities"
-					id="activities"
-					value="#{actividadController.getActividades()}"
-					var="actividad"
-					scrollable="false"
-					editable="true">
+                <h:form>
+                    <p:dataTable
+                        class="table-activities"
+                        id="activities"
+                        value="#{actividadController.getActividades()}"
+                        var="actividad"
+                        scrollable="false"
+                        editable="true">
 
-					<f:facet name="header">#{msg['ActivityList']}</f:facet>
+                        <f:facet name="header">#{msg['ActivityList']}</f:facet>
 
-					<p:column headerText="#{msg['Name']}">
-				#{actividad.nombre}</p:column>
+                        <p:column headerText="#{msg['Name']}">
+                            #{actividad.nombre}</p:column>
 
-					<p:column headerText="#{msg['StartDate']}">
-				#{objetivo.fechaInicio}</p:column>
+                        <p:column headerText="#{msg['StartDate']}">
+                            #{objetivo.fechaInicio}</p:column>
 
-					<p:column headerText="#{msg['EndDate']}">
-				#{objetivo.fechaFin}</p:column>
+                        <p:column headerText="#{msg['EndDate']}">
+                            #{objetivo.fechaFin}</p:column>
 
-					<p:column headerText="#{msg['Resolution']}">
-				#{objetivo.resolucion}</p:column>
+                        <p:column headerText="#{msg['Resolution']}">
+                            #{objetivo.resolucion}</p:column>
 
-					<p:column headerText="#{msg['CaseFile']}">
-				#{objetivo.expediente}</p:column>
+                        <p:column headerText="#{msg['CaseFile']}">
+                            #{objetivo.expediente}</p:column>
 
-					<p:column headerText="#{msg['Announcement']}">
-				#{objetivo.convocatoria}</p:column>
+                        <p:column headerText="#{msg['Announcement']}">
+                            #{objetivo.convocatoria}</p:column>
 
-					<p:column headerText="#{msg['StrategicLine']}">
-				#{objetivo.linea}</p:column>
+                        <p:column headerText="#{msg['StrategicLine']}">
+                            #{objetivo.linea}</p:column>
 
-					<p:column headerText="#{msg['Ambit']}">
-				#{objetivo.ambito}</p:column>
+                        <p:column headerText="#{msg['Ambit']}">
+                            #{objetivo.ambito}</p:column>
 
-				</p:dataTable>
-			</h:form>
+                    </p:dataTable>
+                </h:form>
 
-			<div class="form-activity">
+                <div class="form-activity">
 
-				<p:tabView>
+                    <p:tabView>
 
-					<p:tab title="#{msg['AddSimpleActivity']}">
-						<h:form id="add-simple-activity">
-							<table id="form-simple">
-								<tr class="columna">
-									<th></th>
-									<th></th>
-									<th></th>
-								</tr>
+                        <p:tab title="#{msg['AddSimpleActivity']}">
+                            <h:form id="add-simple-activity">
+                                <table id="form-simple">
+                                    <tr class="columna">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
 
-								<tr class="columna">
-									<td><label for="activity-name">#{msg['Name']}</label> <h:inputText
-											id="activity-name"
-											value="#{actividadSimpleController.name}"
-											required="true" /></td>
+                                    <tr class="columna">
+                                        <td><label for="activity-name">#{msg['Name']}</label> <h:inputText
+                                                id="activity-name"
+                                                value="#{actividadSimpleController.name}"
+                                                required="true" /></td>
 
-									<td><label for="fecha-inicio">#{msg['StartDate']}</label>
-										<p:calendar
-											id="fecha-inicio"
-											value="#{actividadSimpleController.startDate}"
-											mode="popup"
-											showOn="focus"
-											locale="es" /></td>
+                                        <td><label for="fecha-inicio">#{msg['StartDate']}</label>
+                                            <p:calendar
+                                                id="fecha-inicio"
+                                                value="#{actividadSimpleController.startDate}"
+                                                mode="popup"
+                                                showOn="focus"
+                                                locale="es" /></td>
 
-									<td><label for="fecha-final">#{msg['EndDate']}</label> <p:calendar
-											id="fecha-final"
-											value="#{actividadSimpleController.endDate}"
-											mode="popup"
-											showOn="focus"
-											locale="es" /></td>
-								</tr>
+                                        <td><label for="fecha-final">#{msg['EndDate']}</label> <p:calendar
+                                                id="fecha-final"
+                                                value="#{actividadSimpleController.endDate}"
+                                                mode="popup"
+                                                showOn="focus"
+                                                locale="es" /></td>
+                                    </tr>
 
-								<tr class="columna">
-									<td><label for="resolucion">#{msg['Resolution']}</label> <h:inputText
-											id="resolucion"
-											value="#{actividadSimpleController.resolucion}"
-											required="true" /></td>
+                                    <tr class="columna">
+                                        <td><label for="resolucion">#{msg['Resolution']}</label> <h:inputText
+                                                id="resolucion"
+                                                value="#{actividadSimpleController.resolucion}"
+                                                required="true" /></td>
 
-									<td><label for="expediente">#{msg['CaseFile']}</label> <h:inputText
-											id="expediente"
-											value="#{actividadSimpleController.expediente}"
-											required="true" /></td>
+                                        <td><label for="expediente">#{msg['CaseFile']}</label> <h:inputText
+                                                id="expediente"
+                                                value="#{actividadSimpleController.expediente}"
+                                                required="true" /></td>
 
-									<td><label for="convocatoria">#{msg['Announcement']}</label>
-										<p:selectOneMenu
-											id="convocatoria"
-											value="#{actividadSimpleController.convocatoria}" >
-											<f:selectItem
-												itemLabel="Seleccionar"
-												itemValue="" />
-											<f:selectItems
-												value="#{convocatoriaController.getConvocatorias()}"
-												var="convocatoria"
-												itemLabel="#{convocatoria.nombre}"
-												itemValue="#{convocatoria}" />
-										</p:selectOneMenu></td>
-								</tr>
+                                        <td><label for="convocatoria">#{msg['Announcement']}</label>
+                                            <p:selectOneMenu
+                                                id="convocatoria"
+                                                value="#{actividadSimpleController.convocatoria}"
+                                                converter="omnifaces.SelectItemsConverter" >
+                                                <f:selectItem
+                                                    itemLabel="Seleccionar"
+                                                    itemValue="" />
+                                                <f:selectItems
+                                                    value="#{convocatoriaController.getConvocatorias()}"
+                                                    var="convocatoria"
+                                                    itemLabel="#{convocatoria.nombre}"
+                                                    itemValue="#{convocatoria}" />
+                                            </p:selectOneMenu></td>
+                                    </tr>
 
-								<tr class="columna">
-									<td><label for="linea-estrategica">#{msg['StrategicLine']}</label>
-										<p:selectOneMenu
-											id="linea-estrategica"
-											value="#{actividadSimpleController.linea}">
-											<f:selectItem
-												itemLabel="Seleccionar"
-												itemValue="" />
-											<f:selectItems
-												value="#{lineaEstrategicaController.getLineas()}"
-												var="linea"
-												itemLabel="#{linea.nombre}"
-												itemValue="#{linea}" />
-										</p:selectOneMenu></td>
+                                    <tr class="columna">
+                                        <td><label for="linea-estrategica">#{msg['StrategicLine']}</label>
+                                            <p:selectOneMenu
+                                                id="linea-estrategica"
+                                                value="#{actividadSimpleController.linea}"
+                                                converter="omnifaces.SelectItemsConverter" >
+                                                <f:selectItem
+                                                    itemLabel="Seleccionar"
+                                                    itemValue="" />
+                                                <f:selectItems
+                                                    value="#{lineaEstrategicaController.getLineas()}"
+                                                    var="linea"
+                                                    itemLabel="#{linea.nombre}"
+                                                    itemValue="#{linea}" />
+                                            </p:selectOneMenu></td>
 
-									<td><label for="ambito">#{msg['Ambit']}</label> <p:selectOneMenu
-											id="ambito"
-											value="#{actividadSimpleController.ambito}">
-											<f:selectItem
-												itemLabel="Seleccionar"
-												itemValue="" />
-											<f:selectItems
-												value="#{ambitoController.getAmbitos()}"
-												var="ambito"
-												itemLabel="#{ambito.nombre}"
-												itemValue="#{ambito}" />
-										</p:selectOneMenu></td>
-								</tr>
-							</table>
+                                        <td><label for="ambito">#{msg['Ambit']}</label> <p:selectOneMenu
+                                                id="ambito"
+                                                value="#{actividadSimpleController.ambito}"
+                                                converter="omnifaces.SelectItemsConverter" >
+                                                <f:selectItem
+                                                    itemLabel="Seleccionar"
+                                                    itemValue="" />
+                                                <f:selectItems
+                                                    value="#{ambitoController.getAmbitos()}"
+                                                    var="ambito"
+                                                    itemLabel="#{ambito.nombre}"
+                                                    itemValue="#{ambito}" />
+                                            </p:selectOneMenu></td>
+                                    </tr>
+                                </table>
 
-							<h:commandButton
-								class="btn btn-secondary"
-								action="#{actividadSimpleController.create()}"
-								value="#{msg['Create']}" />
+                                <h:commandButton
+                                    class="btn btn-secondary"
+                                    action="#{actividadSimpleController.create()}"
+                                    value="#{msg['Create']}" />
 
-						</h:form>
-					</p:tab>
+                            </h:form>
+                        </p:tab>
 
-					<p:tab title="#{msg['AddCompoundActivity']}">
-						<h:form id="add-compound-activity">
-							<p>Hacer</p>
-						</h:form>
-					</p:tab>
+                        <p:tab title="#{msg['AddCompoundActivity']}">
+                            <h:form id="add-compound-activity">
+                                <p>Hacer</p>
+                            </h:form>
+                        </p:tab>
 
-					<p:tab title="#{msg['AssignActivity']}">
-						<h:form id="assign-activity">
-<!-- 							<label for="lista-usuarios">Seleccionar usuarios</label> -->
-<!-- 							<p:selectOneMenu -->
-<!-- 								id="lista-usuarios" -->
-<!-- 								value="" -->
-<!-- 								var="u"> -->
-<!-- 								<f:selectItems -->
-<!-- 									value="#{usuarioController.getUsers()}" -->
-<!-- 									var="usuario" -->
-<!-- 									itemLabel="#{usario.name}" -->
-<!-- 									itemValue="#{usuario}" /> -->
-<!-- 									#{u.name} -->
-<!-- 							</p:selectOneMenu> -->
-						</h:form>
-					</p:tab>
+                        <p:tab title="#{msg['AssignActivity']}">
+                            <h:form id="assign-activity">
+                                <!-- 							<label for="lista-usuarios">Seleccionar usuarios</label> -->
+                                <!-- 							<p:selectOneMenu -->
+                                <!-- 								id="lista-usuarios" -->
+                                <!-- 								value="" -->
+                                <!-- 								var="u"> -->
+                                <!-- 								<f:selectItems -->
+                                <!-- 									value="#{usuarioController.getUsers()}" -->
+                                <!-- 									var="usuario" -->
+                                <!-- 									itemLabel="#{usario.name}" -->
+                                <!-- 									itemValue="#{usuario}" /> -->
+                                <!-- 									#{u.name} -->
+                                <!-- 							</p:selectOneMenu> -->
+                            </h:form>
+                        </p:tab>
 
-					<p:tab title="Crear convocatoria">
-						<h:form id="crear-convo">
-							<label for="convo-name">#{msg['Name']}</label>
-							<h:inputText
-								id="convo-name"
-								value="#{convocatoriaController.nombre}"
-								required="true" />
+                        <p:tab title="Crear convocatoria">
+                            <h:form id="crear-convo">
+                                <label for="convo-name">#{msg['Name']}</label>
+                                <h:inputText
+                                    id="convo-name"
+                                    value="#{convocatoriaController.nombre}"
+                                    required="true" />
 
-							<h:commandButton
-								action="#{convocatoriaController.crear()}"
-								value="#{msg['Create']}" />
-						</h:form>
-					</p:tab>
+                                <h:commandButton
+                                    action="#{convocatoriaController.crear()}"
+                                    value="#{msg['Create']}" />
+                            </h:form>
+                        </p:tab>
 
-					<p:tab title="Crear Linea estratégica">
-						<h:form id="crear-linea">
-							<label for="linea-name">#{msg['Name']}</label>
-							<h:inputText
-								id="linea-name"
-								value="#{lineaEstrategicaController.nombre}"
-								required="true" />
+                        <p:tab title="Crear Linea estratégica">
+                            <h:form id="crear-linea">
+                                <label for="linea-name">#{msg['Name']}</label>
+                                <h:inputText
+                                    id="linea-name"
+                                    value="#{lineaEstrategicaController.nombre}"
+                                    required="true" />
 
-							<h:commandButton
-								action="#{lineaEstrategicaController.crear()}"
-								value="#{msg['Create']}" />
-						</h:form>
-					</p:tab>
+                                <h:commandButton
+                                    action="#{lineaEstrategicaController.crear()}"
+                                    value="#{msg['Create']}" />
+                            </h:form>
+                        </p:tab>
 
-					<p:tab title="Crear Ámbito">
-						<h:form id="crear-ambito">
-							<label for="ambito-name">#{msg['Name']}</label>
-							<h:inputText
-								id="ambito-name"
-								value="#{ambitoController.nombre}"
-								required="true" />
+                        <p:tab title="Crear Ámbito">
+                            <h:form id="crear-ambito">
+                                <label for="ambito-name">#{msg['Name']}</label>
+                                <h:inputText
+                                    id="ambito-name"
+                                    value="#{ambitoController.nombre}"
+                                    required="true" />
 
-							<h:commandButton
-								action="#{ambitoController.crear()}"
-								value="#{msg['Create']}" />
-						</h:form>
-					</p:tab>
+                                <h:commandButton
+                                    action="#{ambitoController.crear()}"
+                                    value="#{msg['Create']}" />
+                            </h:form>
+                        </p:tab>
 
-				</p:tabView>
-			</div>
-		</div>
+                    </p:tabView>
+                </div>
+            </div>
 
-		<div class="footer">
-			#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
-		</div>
+            <div class="footer">
+                #{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
+            </div>
 
-		<div
-			class="modal fade"
-			id="infoModal"
-			tabindex="-1"
-			role="dialog">
-			<div
-				class="modal-dialog modal-dialog-centered"
-				role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-tittle">#{msg['About']}</h3>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&#215;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p style="text-align: justify">
-							<span>#{msg['AboutUs']}</span>
-						</p>
-					</div>
-					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-primary"
-							data-dismiss="modal">OK</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</f:view>
+            <div
+                class="modal fade"
+                id="infoModal"
+                tabindex="-1"
+                role="dialog">
+                <div
+                    class="modal-dialog modal-dialog-centered"
+                    role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-tittle">#{msg['About']}</h3>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&#215;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="text-align: justify">
+                                <span>#{msg['AboutUs']}</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:view>
 
-</body>
+    </body>
 </html>

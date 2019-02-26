@@ -49,8 +49,13 @@ public class Ambito {
 		this.nro = nro;
 	}
 
-	@Override
+	/* @Override
 	public String toString() {
 		return "Ambito [nro=" + nro + ", nombre=" + nombre + "]";
-	}
+	} */
+        
+        @Override
+        public String toString() {
+            return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+        }
 }

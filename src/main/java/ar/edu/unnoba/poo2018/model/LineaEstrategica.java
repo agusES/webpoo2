@@ -48,8 +48,14 @@ public class LineaEstrategica {
 		this.nombre = nombre;
 	}
 
-	@Override
+	/* @Override
 	public String toString() {
 		return "LineaEstrategica [nro=" + nro + ", nombre=" + nombre + "]";
-	}
+	} */
+        
+        @Override
+        public String toString() {
+            return String.format("%s[nro=%d][nombre=%s]", getClass().getSimpleName(), getNro(),getNombre());
+        }
+
 }

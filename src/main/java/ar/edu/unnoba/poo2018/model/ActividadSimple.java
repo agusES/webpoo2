@@ -45,10 +45,16 @@ public class ActividadSimple extends Actividad {
 	public void setImpactos(List<Impacto> impactos) {
 		this.impactos = impactos;
 	}
+        /*
+        @Override
+        public String toString() {
+            return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
+        }
+*/
+        @Override
+        public String toString() {
+            return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+        }
 
-	@Override
-	public String toString() {
-		return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
-	}
 
 }

@@ -101,5 +101,5 @@ public class ActividadSimpleController {
 	public void setAmbito(Ambito ambito) {
 		this.ambito = ambito;
 	}
-
+        
 }

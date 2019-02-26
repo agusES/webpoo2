@@ -49,8 +49,14 @@ public class Convocatoria {
 		this.nombre = nombre;
 	}
 
-	@Override
+	/* @Override
 	public String toString() {
 		return "Convocatoria [nro=" + nro + ", nombre=" + nombre + "]";
-	}
+	} */
+        
+        @Override
+        public String toString() {
+            return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+        }
+
 }
