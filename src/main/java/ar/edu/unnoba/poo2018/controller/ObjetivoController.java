@@ -23,26 +23,14 @@ public class ObjetivoController implements Serializable {
 	@EJB
 	private ObjetivoBean objetivob;
 	
-    public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Car Edited", ((Objetivo) event.getObject()).getNombre());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Objetivo) event.getObject()).getNombre());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-	public String crearObj() {
+	public void crearObj() {
 		try {
 			Objetivo o = new Objetivo(nombre);
 			objetivob.create(o);
 			System.out.print("Se creó el objetivo " + o);
 		} catch (Exception e) {
 			System.out.print("Algo salió mal en ObjetivoController.crearObj()");
-			return "fallo";
 		}
-		return "exito";
 	}
 
 	public List<Objetivo> getObjetivos() {
@@ -69,6 +57,16 @@ public class ObjetivoController implements Serializable {
 //			context.addMessage(null, message);
 //		}
 	}
+	
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Car Edited", ((Objetivo) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Objetivo) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
 	public String getNombre() {
 		return nombre;

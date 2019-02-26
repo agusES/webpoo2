@@ -1,37 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.beans.ConvocatoriaBean;
 import ar.edu.unnoba.poo2018.model.Convocatoria;
-import java.util.ArrayList;
+
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Balma
- */
 @ManagedBean(name = "convocatoriaController")
 @SessionScoped
 public class ConvocatoriaController {
 
     @EJB
     private ConvocatoriaBean convocatoriab;
+    
+	private String nombre;
+    
+    public List<Convocatoria> getConvocatorias() {
+    	System.out.print("Llegamos a ConvocatoriaController.getConvocatorias().");
+		return convocatoriab.getConvocatorias();
+	}
+    
+	public void crear() {
+		try {
+			Convocatoria c = new Convocatoria(nombre);
+			convocatoriab.create(c);
+			System.out.print("Se creó la convocatoria " + c);
+		} catch (Exception e) {
+			System.out.print("Algo salió mal en ConvocatoriaController.crear()");
+		}
+	}
 
-    private Convocatoria convocatoria = new Convocatoria();
-    private List<Convocatoria> convocatorias = new ArrayList<>();
+	public String getNombre() {
+		return nombre;
+	}
 
-    @PostConstruct
-    public void init() {
-        convocatoria = new Convocatoria();
-        convocatorias = new ArrayList<>();
-    }
-
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

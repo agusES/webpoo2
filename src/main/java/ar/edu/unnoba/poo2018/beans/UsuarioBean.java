@@ -58,8 +58,9 @@ public class UsuarioBean {
         return false;
     }
     
-    public List<Usuario> getAllUsers(){
-        Query query = em.createNamedQuery("user.allUsers");
+    @SuppressWarnings("unchecked")
+	public List<Usuario> getAllUsers(){
+        Query query = em.createNamedQuery("usuario.allUsuarios");
         return query.getResultList();
     }
 }

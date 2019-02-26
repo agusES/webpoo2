@@ -1,23 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Convocatoria;
+
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-/**
- *
- * @author Balma
- */
 @Stateless
 public class ConvocatoriaBean {
 
-    @PersistenceContext(unitName = "webpoo")
-    EntityManager em;
+	@PersistenceContext(unitName = "webpoo")
+	EntityManager em;
 
+	public void create(Convocatoria c) {
+		em.persist(c);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Convocatoria> getConvocatorias() {
+		Query query = em.createNamedQuery("convocatoria.allConvocatorias");
+		return query.getResultList();
+	}
 }

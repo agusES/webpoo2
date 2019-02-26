@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Actividades_Compuestas")
+@Table(name = "actividadesCompuestas")
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class ActividadCompuesta extends Actividad {
 

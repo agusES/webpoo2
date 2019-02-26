@@ -61,10 +61,6 @@ public abstract class Actividad {
 		return id;
 	}
 
-	public void setNro(long id) {
-		this.id = id;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

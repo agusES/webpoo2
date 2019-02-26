@@ -26,21 +26,15 @@ public class ActividadSimpleController {
 	@EJB
 	private ActividadSimpleBean simpleb;
 
-//    private ActividadSimple actividadSimple = new ActividadSimple();
-//    private List<ActividadSimple> actividadSimples = new ArrayList<>();
-//
-//    @PostConstruct
-//    public void init() {
-//        actividadSimple = new ActividadSimple();
-//        actividadSimples = new ArrayList<>();
-//    }
-
-	public String create() {
-		ActividadSimple act = new ActividadSimple(name, startDate, endDate, resolucion, expediente, convocatoria, linea,
-				ambito);
-		System.out.println("ActividadSimpleController.create(). " + act);
-		simpleb.create(act);
-		return "ok";
+	public void create() {
+		try {
+			System.out.println("ActividadSimpleController.create()");
+			ActividadSimple act = new ActividadSimple(name, startDate, endDate, resolucion, expediente, convocatoria, linea, ambito);
+			System.out.println("Actividad que se intenta crear: " + act);
+			simpleb.create(act);
+		} catch (Exception e) {
+			System.out.print("Algo salió mal en ObjetivoController.crearObj()");
+		}
 	}
 
 	public String getName() {
@@ -88,6 +82,7 @@ public class ActividadSimpleController {
 	}
 
 	public void setConvocatoria(Convocatoria convocatoria) {
+		System.out.print("Se recibió la convocatoria " + convocatoria);
 		this.convocatoria = convocatoria;
 	}
 

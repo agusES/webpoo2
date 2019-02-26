@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Actividades_Simples")
+@Table(name = "actividadesSimples")
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class ActividadSimple extends Actividad {
 
@@ -23,10 +23,15 @@ public class ActividadSimple extends Actividad {
 	public ActividadSimple() {
 	}
 
-	public ActividadSimple(String nombre, Date fechaInicio, Date endDate, String resolucion, String expediente,
-			Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
+	public ActividadSimple(String nombre, Date fechaInicio, Date endDate, String resolucion, String expediente, Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
 		setNombre(nombre);
 		setFechaInicio(fechaInicio);
+		setFechaFin(endDate);
+		setResolucion(resolucion);
+		setExpediente(expediente);
+		setConvocatoria(convocatoria);
+		setLinea(linea);
+		setAmbito(ambito);
 	}
 
 	public void addObjetivo(int peso, Objetivo objetivo) {

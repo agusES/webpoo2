@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.beans.AmbitoBean;
 import ar.edu.unnoba.poo2018.model.Ambito;
-import java.util.ArrayList;
+
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Balma
- */
 @ManagedBean(name = "ambitoController")
 @SessionScoped
 public class AmbitoController {
@@ -25,13 +15,26 @@ public class AmbitoController {
     @EJB
     private AmbitoBean ambitob;
 
-    private Ambito ambito = new Ambito();
-    private List<Ambito> ambitos = new ArrayList<>();
+    private String nombre;
 
-    @PostConstruct
-    public void init() {
-        ambito = new Ambito();
-        ambitos = new ArrayList<>();
-    }
+	public List<Ambito> getAmbitos() {
+		return ambitob.getAmbitos();
+	}
 
+	public void crear() {
+		try {
+			Ambito a = new Ambito(nombre);
+			ambitob.create(a);
+		} catch (Exception e) {
+			System.out.print("Algo salió mal en AmbitoController.crear()");
+		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

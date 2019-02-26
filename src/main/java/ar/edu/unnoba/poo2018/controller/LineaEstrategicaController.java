@@ -1,37 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.beans.LineaEstrategicaBean;
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Balma
- */
 @ManagedBean(name = "lineaEstrategicaController")
 @SessionScoped
 public class LineaEstrategicaController {
 
-    @EJB
-    private LineaEstrategicaBean lineaEstrategicab;
+	@EJB
+	private LineaEstrategicaBean lineaEstrategicab;
 
-    private LineaEstrategica lineaEstrategica = new LineaEstrategica();
-    private List<LineaEstrategica> lineaEstrategicas = new ArrayList<>();
+	private String nombre;
 
-    @PostConstruct
-    public void init() {
-        lineaEstrategica = new LineaEstrategica();
-        lineaEstrategicas = new ArrayList<>();
-    }
+	public List<LineaEstrategica> getLineas() {
+		return lineaEstrategicab.getLineas();
+	}
 
+	public void crear() {
+		try {
+			LineaEstrategica l = new LineaEstrategica(nombre);
+			lineaEstrategicab.create(l);
+		} catch (Exception e) {
+			System.out.print("Algo salió mal en LineaEstrategicaController.crear()");
+		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }
