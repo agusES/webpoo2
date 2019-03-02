@@ -48,14 +48,24 @@ public class LineaEstrategica {
 		this.nombre = nombre;
 	}
 
-	/* @Override
+	@Override
 	public String toString() {
-		return "LineaEstrategica [nro=" + nro + ", nombre=" + nombre + "]";
-	} */
-        
-        @Override
-        public String toString() {
-            return String.format("%s[nro=%d][nombre=%s]", getClass().getSimpleName(), getNro(),getNombre());
-        }
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+	}
+	
+    @Override
+    public int hashCode() {
+        return (getNombre() != null) 
+            ? (getClass().getSimpleName().hashCode() + getNombre().hashCode())
+            : super.hashCode();
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getNombre() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getNombre().equals(((LineaEstrategica) other).getNombre())
+            : (other == this);
+    }
 }

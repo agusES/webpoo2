@@ -43,11 +43,11 @@ public abstract class Actividad {
 	private String resolucion;
 	private String expediente;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Convocatoria convocatoria;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private LineaEstrategica linea;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Ambito ambito;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -138,6 +138,18 @@ public abstract class Actividad {
 		return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
 				+ ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria=" + convocatoria
 				+ ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
+	}
+	
+	public String getNombreConvocatoria() {
+		return getConvocatoria().getNombre();
+	}
+
+	public String getNombreLineaEstrategica() {
+		return getLinea().getNombre();
+	}
+
+	public String getNombreAmbito() {
+		return getAmbito().getNombre();
 	}
 
 	public abstract List<Impacto> getImpactos();

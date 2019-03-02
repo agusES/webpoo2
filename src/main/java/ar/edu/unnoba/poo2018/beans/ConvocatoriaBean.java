@@ -24,4 +24,8 @@ public class ConvocatoriaBean {
 		Query query = em.createNamedQuery("convocatoria.allConvocatorias");
 		return query.getResultList();
 	}
+	
+	public Convocatoria find(Object id) {
+		return em.find(Convocatoria.class, id);
+	}
 }

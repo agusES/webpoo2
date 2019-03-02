@@ -28,8 +28,6 @@ public class ActividadController implements Serializable {
 		return actividadb.getActividades();
 	}
 	
-	
-	
 	public Usuario getNuevoResponsable() {
 		return nuevoResponsable;
 	}
@@ -37,5 +35,7 @@ public class ActividadController implements Serializable {
 	public void setNuevoResponsable(Usuario nuevoResponsable) {
 		this.nuevoResponsable = nuevoResponsable;
 	}
+	
+	
 
 }

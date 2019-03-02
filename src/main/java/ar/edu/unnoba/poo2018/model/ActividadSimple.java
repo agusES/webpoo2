@@ -23,7 +23,8 @@ public class ActividadSimple extends Actividad {
 	public ActividadSimple() {
 	}
 
-	public ActividadSimple(String nombre, Date fechaInicio, Date endDate, String resolucion, String expediente, Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
+	public ActividadSimple(String nombre, Date fechaInicio, Date endDate, String resolucion, String expediente,
+			Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
 		setNombre(nombre);
 		setFechaInicio(fechaInicio);
 		setFechaFin(endDate);
@@ -45,16 +46,10 @@ public class ActividadSimple extends Actividad {
 	public void setImpactos(List<Impacto> impactos) {
 		this.impactos = impactos;
 	}
-        /*
-        @Override
-        public String toString() {
-            return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
-        }
-*/
-        @Override
-        public String toString() {
-            return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
-        }
 
+	@Override
+	public String toString() {
+		return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
+	}
 
 }
