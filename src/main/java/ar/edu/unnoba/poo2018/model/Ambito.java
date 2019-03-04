@@ -51,7 +51,8 @@ public class Ambito {
 
 	@Override
 	public String toString() {
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+//		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+		return getNombre();
 	}
 	
     @Override

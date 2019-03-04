@@ -45,20 +45,22 @@ public class Objetivo {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		return nombre.equals(((Objetivo) obj).getNombre());
+	public String toString() {
+//		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+		return getNombre();
 	}
 
 	@Override
 	public int hashCode() {
-		return nombre.hashCode();
+		return (getNombre() != null) ? (getClass().getSimpleName().hashCode() + getNombre().hashCode())
+				: super.hashCode();
 	}
 
 	@Override
-	public String toString() {
-		return "Objetivo [nro=" + nro + ", nombre=" + nombre + "]";
+	public boolean equals(Object other) {
+		return (other != null && getNombre() != null && other.getClass().isAssignableFrom(getClass())
+				&& getClass().isAssignableFrom(other.getClass())) ? getNombre().equals(((Objetivo) other).getNombre())
+						: (other == this);
 	}
 
 }

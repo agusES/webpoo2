@@ -10,7 +10,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
 @Entity
 @Table(name = "usuario")
 @NamedQueries({

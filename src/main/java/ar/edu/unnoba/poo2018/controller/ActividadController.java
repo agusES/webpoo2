@@ -11,7 +11,6 @@ import ar.edu.unnoba.poo2018.beans.ActividadBean;
 import ar.edu.unnoba.poo2018.model.Actividad;
 import ar.edu.unnoba.poo2018.model.Usuario;
 
-
 @ManagedBean(name = "actividadController")
 @SessionScoped
 public class ActividadController implements Serializable {
@@ -35,7 +34,4 @@ public class ActividadController implements Serializable {
 	public void setNuevoResponsable(Usuario nuevoResponsable) {
 		this.nuevoResponsable = nuevoResponsable;
 	}
-	
-	
-
 }

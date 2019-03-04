@@ -5,6 +5,7 @@ import ar.edu.unnoba.poo2018.model.ActividadSimple;
 import ar.edu.unnoba.poo2018.model.Ambito;
 import ar.edu.unnoba.poo2018.model.Convocatoria;
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
+import ar.edu.unnoba.poo2018.model.Objetivo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,6 +23,9 @@ public class ActividadSimpleController {
 	private Convocatoria convocatoria;
 	private LineaEstrategica linea;
 	private Ambito ambito;
+	
+	private int peso;
+	private Objetivo objetivoSeleccionado;
 
 	@EJB
 	private ActividadSimpleBean simpleb;
@@ -29,7 +33,7 @@ public class ActividadSimpleController {
 	public void create() {
 		try {
 			System.out.println("ActividadSimpleController.create()");
-			ActividadSimple act = new ActividadSimple(name, startDate, endDate, resolucion, expediente, convocatoria, linea, ambito);
+			ActividadSimple act = new ActividadSimple(name, startDate, endDate, resolucion, expediente, convocatoria, linea, ambito, peso, objetivoSeleccionado);
 			System.out.println("Actividad que se intenta crear: " + act);
 			simpleb.create(act);
 		} catch (Exception e) {
@@ -100,6 +104,22 @@ public class ActividadSimpleController {
 
 	public void setAmbito(Ambito ambito) {
 		this.ambito = ambito;
+	}
+
+	public int getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+
+	public Objetivo getObjetivoSeleccionado() {
+		return objetivoSeleccionado;
+	}
+
+	public void setObjetivoSeleccionado(Objetivo objetivoSeleccionado) {
+		this.objetivoSeleccionado = objetivoSeleccionado;
 	}
         
 }
