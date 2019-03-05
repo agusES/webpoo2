@@ -128,14 +128,6 @@ public abstract class Actividad {
 		this.ambito = ambito;
 	}
 
-	public void addUsuario(Usuario u) {
-		responsables.add(u);
-	}
-
-	public void removeUsuario(Usuario u) {
-		responsables.remove(u);
-	}
-
 	@Override
 	public String toString() {
 		return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
@@ -160,9 +152,42 @@ public abstract class Actividad {
 	public List<Usuario> getResponsables() {
 		return responsables;
 	}
-
-	public void setResponsables(List<Usuario> responsables) {
-		this.responsables = responsables;
+	
+	public void addUsuario(Usuario u) {
+		System.out.print("Actividad.addUsuario()");		
+		responsables.add(u);
+                System.out.print("RESPONSABLES: " + getResponsables());
+	}
+	
+	public void removeUsuario(Usuario u) {
+		responsables.remove(u);
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Actividad other = (Actividad) obj;
+		if (id != other.id)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
 }

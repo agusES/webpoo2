@@ -14,24 +14,38 @@ import ar.edu.unnoba.poo2018.model.Usuario;
 @ManagedBean(name = "actividadController")
 @SessionScoped
 public class ActividadController implements Serializable {
-	
-	@EJB
-    private ActividadBean actividadb;
-	
-	private Usuario nuevoResponsable;
 
 	private static final long serialVersionUID = 1L;
-	
-	public List<Actividad> getActividades() {
-		System.out.print("ActividadController.getActividades()");
-		return actividadb.getActividades();
-	}
-	
-	public Usuario getNuevoResponsable() {
-		return nuevoResponsable;
+
+	@EJB
+	private ActividadBean actividadb;
+
+	private Usuario usuarioResponsable;
+	private Actividad actividadSeleccionada;
+
+	public void asignarActividad() {
+		System.out.print("ActividadController.asignarActividad()");
+		actividadSeleccionada.addUsuario(usuarioResponsable);
 	}
 
-	public void setNuevoResponsable(Usuario nuevoResponsable) {
-		this.nuevoResponsable = nuevoResponsable;
+	public List<Actividad> getActividades() {
+		return actividadb.getActividades();
+	}
+
+
+	public Usuario getUsuarioResponsable() {
+		return usuarioResponsable;
+	}
+
+	public void setUsuarioResponsable(Usuario usuarioResponsable) {
+		this.usuarioResponsable = usuarioResponsable;
+	}
+
+	public Actividad getActividadSeleccionada() {
+		return actividadSeleccionada;
+	}
+
+	public void setActividadSeleccionada(Actividad actividadSeleccionada) {
+		this.actividadSeleccionada = actividadSeleccionada;
 	}
 }

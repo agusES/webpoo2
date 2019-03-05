@@ -6,6 +6,7 @@ import ar.edu.unnoba.poo2018.model.Ambito;
 import ar.edu.unnoba.poo2018.model.Convocatoria;
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
 import ar.edu.unnoba.poo2018.model.Objetivo;
+import ar.edu.unnoba.poo2018.model.Usuario;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,10 +27,11 @@ public class ActividadSimpleController {
 	
 	private int peso;
 	private Objetivo objetivoSeleccionado;
+	private Usuario usuarioSeleccionado;
 
 	@EJB
 	private ActividadSimpleBean simpleb;
-
+	
 	public void create() {
 		try {
 			System.out.println("ActividadSimpleController.create()");
@@ -120,6 +122,14 @@ public class ActividadSimpleController {
 
 	public void setObjetivoSeleccionado(Objetivo objetivoSeleccionado) {
 		this.objetivoSeleccionado = objetivoSeleccionado;
+	}
+
+	public Usuario getUsuarioSeleccionado() {
+		return usuarioSeleccionado;
+	}
+
+	public void setUsuarioSeleccionado(Usuario usuarioResponsable) {
+		this.usuarioSeleccionado = usuarioResponsable;
 	}
         
 }

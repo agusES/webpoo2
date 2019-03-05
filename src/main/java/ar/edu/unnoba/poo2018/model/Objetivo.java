@@ -62,5 +62,4 @@ public class Objetivo {
 				&& getClass().isAssignableFrom(other.getClass())) ? getNombre().equals(((Objetivo) other).getNombre())
 						: (other == this);
 	}
-
 }
