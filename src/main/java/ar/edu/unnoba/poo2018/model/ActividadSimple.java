@@ -55,4 +55,12 @@ public class ActividadSimple extends Actividad {
 	public String toString() {
 		return "Simple: " + getNombre() + " [impactos=" + impactos + "]";
 	}
+        @Override
+        public List<String> responsablesToString () {
+            List<String> responsablesToString = new ArrayList<>();
+            for (Usuario usr:super.getResponsables()) {
+                responsablesToString.add(usr.getName());
+            }
+        return responsablesToString;
+        }
 }

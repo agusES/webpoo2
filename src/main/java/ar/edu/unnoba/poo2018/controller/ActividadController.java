@@ -23,19 +23,28 @@ public class ActividadController implements Serializable {
 	private Usuario usuarioResponsable;
 	private Actividad actividadSeleccionada;
 
+        /*
 	public void asignarActividad() {
 		System.out.print("ActividadController.asignarActividad()");
 		actividadSeleccionada.addUsuario(usuarioResponsable);
 	}
+*/
 
 	public List<Actividad> getActividades() {
 		return actividadb.getActividades();
 	}
+        
+        public void addUsuario() {
+            this.actividadSeleccionada.addUsuario(usuarioResponsable);
+            actividadb.Update(this.actividadSeleccionada);
+            
+        }
 
 
 	public Usuario getUsuarioResponsable() {
 		return usuarioResponsable;
 	}
+        
 
 	public void setUsuarioResponsable(Usuario usuarioResponsable) {
 		this.usuarioResponsable = usuarioResponsable;

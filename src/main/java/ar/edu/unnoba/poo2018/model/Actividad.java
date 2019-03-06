@@ -159,6 +159,14 @@ public abstract class Actividad {
                 System.out.print("RESPONSABLES: " + getResponsables());
 	}
 	
+        public List<String> responsablesToString () {
+            List<String> responsablesToString = new ArrayList<>();
+            for (Usuario usr:this.responsables) {
+                responsablesToString.add(usr.getName());
+            }
+            return responsablesToString;
+        }
+        
 	public void removeUsuario(Usuario u) {
 		responsables.remove(u);
 	}

@@ -28,7 +28,12 @@ public class ActividadBean {
     }
 
     public void Update(Actividad act) {
-        em.merge(act);
+        try{
+            em.merge(act);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+
     }
 
     public void remove(Actividad act) {
