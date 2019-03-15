@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,172 +31,202 @@ import javax.persistence.SequenceGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "getActividades", query = "SELECT a FROM actividades a")
 
-public abstract class Actividad {
+public abstract class Actividad implements Serializable{
 
-	@Id
-	@SequenceGenerator(name = "ID_ACTIVIDAD_SEQ", sequenceName = "SEQ_ACTIVIDAD", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ACTIVIDAD_SEQ")
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	private String nombre;
-	@Temporal(TemporalType.DATE)
-	private Date fechaInicio;
-	@Temporal(TemporalType.DATE)
-	private Date fechaFin;
-	private String resolucion;
-	private String expediente;
+    private String nombre;
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
+    private Date fechaFin;
+    private String resolucion;
+    private String expediente;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Convocatoria convocatoria;
-	@ManyToOne(fetch = FetchType.EAGER)
-	private LineaEstrategica linea;
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Ambito ambito;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Convocatoria convocatoria;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private LineaEstrategica linea;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Ambito ambito;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinTable(name = "Responsables", joinColumns = @JoinColumn(name = "actividad_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	@IndexColumn(name = "INDEX_COL")
-	private List<Usuario> responsables = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "Responsables", joinColumns = @JoinColumn(name = "actividad_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    @IndexColumn(name = "INDEX_COL")
+    private List<Usuario> responsables = new ArrayList<>();
 
-	@Version
-	protected int version;
+    @ManyToMany(mappedBy = "actividades")
+    private List<ActividadCompuesta> actividadesCompuestas;
 
-	public long getNro() {
-		return id;
-	}
+    public List<ActividadCompuesta> getActividadesCompuestas() {
+        return actividadesCompuestas;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setActividadesCompuestas(List<ActividadCompuesta> actividadesCompuestas) {
+        this.actividadesCompuestas = actividadesCompuestas;
+    }
+    
+    public Actividad(){
+    }
+    public Actividad(String nombre, Date fechaInicio, Date fechaFin, String resolucion, String expediente,
+			Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito) {
+        this.setNombre(nombre);
+        this.setFechaInicio(fechaInicio);
+        this.setFechaFin(fechaFin);
+        this.setResolucion(resolucion);
+        this.setExpediente(expediente);
+        this.setConvocatoria(convocatoria);
+        this.setLinea(linea);
+        this.setAmbito(ambito);        
+    }
+    
+    @Version
+    protected int version;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public long getNro() {
+        return id;
+    }
 
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public Date getFechaFin() {
-		return fechaFin;
-	}
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
 
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
-	}
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
 
-	public String getResolucion() {
-		return resolucion;
-	}
+    public Date getFechaFin() {
+        return fechaFin;
+    }
 
-	public void setResolucion(String resolucion) {
-		this.resolucion = resolucion;
-	}
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
 
-	public String getExpediente() {
-		return expediente;
-	}
+    public String getResolucion() {
+        return resolucion;
+    }
 
-	public void setExpediente(String expediente) {
-		this.expediente = expediente;
-	}
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
 
-	public Convocatoria getConvocatoria() {
-		return convocatoria;
-	}
+    public String getExpediente() {
+        return expediente;
+    }
 
-	public void setConvocatoria(Convocatoria convocatoria) {
-		this.convocatoria = convocatoria;
-	}
+    public void setExpediente(String expediente) {
+        this.expediente = expediente;
+    }
 
-	public LineaEstrategica getLinea() {
-		return linea;
-	}
+    public Convocatoria getConvocatoria() {
+        return convocatoria;
+    }
 
-	public void setLinea(LineaEstrategica linea) {
-		this.linea = linea;
-	}
+    public void setConvocatoria(Convocatoria convocatoria) {
+        this.convocatoria = convocatoria;
+    }
 
-	public Ambito getAmbito() {
-		return ambito;
-	}
+    public LineaEstrategica getLinea() {
+        return linea;
+    }
 
-	public void setAmbito(Ambito ambito) {
-		this.ambito = ambito;
-	}
+    public void setLinea(LineaEstrategica linea) {
+        this.linea = linea;
+    }
 
-	@Override
-	public String toString() {
-		return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria=" + convocatoria
-				+ ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
-	}
+    public Ambito getAmbito() {
+        return ambito;
+    }
 
-	public String getNombreConvocatoria() {
-		return getConvocatoria().getNombre();
-	}
+    public void setAmbito(Ambito ambito) {
+        this.ambito = ambito;
+    }
 
-	public String getNombreLineaEstrategica() {
-		return getLinea().getNombre();
-	}
+    @Override
+    public String toString() {
+        return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+                + ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria=" + convocatoria
+                + ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
+    }
 
-	public String getNombreAmbito() {
-		return getAmbito().getNombre();
-	}
+    public String getNombreConvocatoria() {
+        return getConvocatoria().getNombre();
+    }
 
-	public abstract List<Impacto> getImpactos();
+    public String getNombreLineaEstrategica() {
+        return getLinea().getNombre();
+    }
 
-	public List<Usuario> getResponsables() {
-		return responsables;
-	}
-	
-	public void addUsuario(Usuario u) {
-		System.out.print("Actividad.addUsuario()");		
-		responsables.add(u);
-                System.out.print("RESPONSABLES: " + getResponsables());
-	}
-	
-        public List<String> responsablesToString () {
-            List<String> responsablesToString = new ArrayList<>();
-            for (Usuario usr:this.responsables) {
-                responsablesToString.add(usr.getName());
-            }
-            return responsablesToString;
+    public String getNombreAmbito() {
+        return getAmbito().getNombre();
+    }
+
+    public abstract List<Impacto> getImpactos();
+
+    public List<Usuario> getResponsables() {
+        return responsables;
+    }
+
+    public void addUsuario(Usuario u) {
+        System.out.print("Actividad.addUsuario()");
+        responsables.add(u);
+        System.out.print("RESPONSABLES: " + getResponsables());
+    }
+
+    public List<String> responsablesToString() {
+        List<String> responsablesToString = new ArrayList<>();
+        for (Usuario usr : this.responsables) {
+            responsablesToString.add(usr.getName());
         }
-        
-	public void removeUsuario(Usuario u) {
-		responsables.remove(u);
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
-	}
+        return responsablesToString;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Actividad other = (Actividad) obj;
-		if (id != other.id)
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
-	}
+    public void removeUsuario(Usuario u) {
+        responsables.remove(u);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Actividad other = (Actividad) obj;
+        if (id != other.id) {
+            return false;
+        }
+        if (nombre == null) {
+            if (other.nombre != null) {
+                return false;
+            }
+        } else if (!nombre.equals(other.nombre)) {
+            return false;
+        }
+        return true;
+    }
 }

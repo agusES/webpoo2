@@ -1,22 +1,58 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
-@Table(name = "actividadesCompuestas")
+@Table(name = "actividades_compuestas")
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
-public class ActividadCompuesta extends Actividad {
+public class ActividadCompuesta extends Actividad implements Serializable {
+    
+
+	@JoinTable(
+                name = "Actividades_Relacionadas",
+                joinColumns = @JoinColumn(name = "actividad_compuesta_id"),
+                inverseJoinColumns = @JoinColumn(name = "actividad_id"))
+	@ManyToMany 
+        private List<Actividad> actividades;
+    
+    	public ActividadCompuesta() {
+	}
+
+	public ActividadCompuesta(String nombre, Date fechaInicio, Date fechaFin, String resolucion, String expediente,
+			Convocatoria convocatoria, LineaEstrategica linea, Ambito ambito, List<Actividad> actividades) {
+            super(nombre, fechaInicio, fechaFin, resolucion, expediente, convocatoria, linea, ambito);            
+            this.actividades = actividades;
+            
+            
+            /*
+            setNombre(nombre);
+            setFechaInicio(fechaInicio);
+            setFechaFin(endDate);
+            setResolucion(resolucion);
+            setExpediente(expediente);
+            setConvocatoria(convocatoria);
+            setLinea(linea);
+            setAmbito(ambito);
+            setActividades(actividades);
+            */
+	}
+
 
 	private class ImpactoEstategiaPromedio {
 
@@ -40,16 +76,17 @@ public class ActividadCompuesta extends Actividad {
 		}
 	}
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "Actividades_Relacionadas", joinColumns = @JoinColumn(name = "actividad_compuesta_id"), inverseJoinColumns = @JoinColumn(name = "actividad_id"))
-	private List<Actividad> actividades = new ArrayList<Actividad>();
 
 	public List<Actividad> getActividades() {
 		return actividades;
 	}
 
 	public void setActividades(List<Actividad> actividades) {
-		this.actividades = actividades;
+                for (Actividad act:actividades) {
+                    this.actividades.add(act);
+                }
+                System.out.print(this.actividades);
+                
 	}
 
 	public void addActividad(Actividad a) {
@@ -97,5 +134,20 @@ public class ActividadCompuesta extends Actividad {
 	public String toString() {
 		return "Compuesto: " + getNombre() + " [actividades=" + actividades + "]";
 	}
+    
+    @Override
+    public int hashCode() {
+        return (getNombre() != null) 
+            ? (getClass().getSimpleName().hashCode() + getNombre().hashCode())
+            : super.hashCode();
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getNombre() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getNombre().equals(((ActividadCompuesta) other).getNombre())
+            : (other == this);
+    }
 }

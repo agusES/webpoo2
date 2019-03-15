@@ -22,7 +22,7 @@ public class ActividadBean {
         Query query = em.createQuery("SELECT a FROM actividades a");
         return query.getResultList();
     }
-
+    
     public void create(Actividad act) {
         em.persist(act);
     }
