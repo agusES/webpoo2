@@ -113,9 +113,7 @@
 
         <p:column headerText="#{msg['PercentageReached']}"
           style="width: 30%">
-          <f:facet name="output">
-            <h:outputText value="Hacer" />
-          </f:facet>
+              #{impactoController.getImpacto(objetivo.nro)} %
         </p:column>
 
         <!-- 				<p:column headerText="#{msg['ChangeName']}" style="width:10%px"> -->

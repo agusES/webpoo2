@@ -59,7 +59,7 @@ public class ObjetivoController implements Serializable {
 	}
 	
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Car Edited", ((Objetivo) event.getObject()).getNombre());
+        FacesMessage msg = new FacesMessage("Objetivo Edited", ((Objetivo) event.getObject()).getNombre());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      

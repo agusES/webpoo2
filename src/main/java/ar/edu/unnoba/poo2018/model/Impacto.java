@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -14,54 +15,67 @@ import javax.persistence.Version;
 @Table(name = "Impactos")
 public class Impacto {
 
-	@Id
-	@SequenceGenerator(name = "ID_IMPACTO_SEQ", sequenceName = "SEQ_IMPACTO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_IMPACTO_SEQ")
-	private long nro;
+    @Id
+    @SequenceGenerator(name = "ID_IMPACTO_SEQ", sequenceName = "SEQ_IMPACTO", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_IMPACTO_SEQ")
+    private long nro;
 
-	private int peso;
+    private int peso;
 
-	@Version
-	protected int version;
+    @Version
+    protected int version;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Objetivo objetivo;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "objetivo_id")
+    private Objetivo objetivo;
 
-	public Impacto() {
-	}
+    public ActividadSimple getActSimple() {
+        return actSimple;
+    }
 
-	public Impacto(int peso, Objetivo objetivo) {
-		this.peso = peso;
-		this.objetivo = objetivo;
-	}
+    public void setActSimple(ActividadSimple actSimple) {
+        this.actSimple = actSimple;
+    }
 
-	public long getNro() {
-		return nro;
-	}
+    @ManyToOne
+    @JoinColumn(name = "actividad_id")
+    private ActividadSimple actSimple;
 
-	public void setNro(long nro) {
-		this.nro = nro;
-	}
+    public Impacto() {
+    }
 
-	public int getPeso() {
-		return peso;
-	}
+    public Impacto(int peso, Objetivo objetivo) {
+        this.peso = peso;
+        this.objetivo = objetivo;
+    }
 
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
+    public long getNro() {
+        return nro;
+    }
 
-	public Objetivo getObjetivo() {
-		return objetivo;
-	}
+    public void setNro(long nro) {
+        this.nro = nro;
+    }
 
-	public void setObjetivo(Objetivo objetivo) {
-		this.objetivo = objetivo;
-	}
+    public int getPeso() {
+        return peso;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("%s: %d", getObjetivo(), getPeso());
-	}
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public Objetivo getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Objetivo objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %d", getObjetivo(), getPeso());
+    }
 
 }

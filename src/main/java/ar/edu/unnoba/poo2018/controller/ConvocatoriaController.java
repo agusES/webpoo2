@@ -18,8 +18,7 @@ public class ConvocatoriaController {
 	private String nombre;
     
     public List<Convocatoria> getConvocatorias() {
-    	System.out.print("Llegamos a ConvocatoriaController.getConvocatorias().");
-		return convocatoriab.getConvocatorias();
+            return convocatoriab.getConvocatorias();
 	}
     
 	public void crear() {

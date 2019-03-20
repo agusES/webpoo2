@@ -29,7 +29,7 @@ import org.hibernate.annotations.IndexColumn;
 public class ActividadSimple extends Actividad implements Serializable {
     
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "actividad")
+	@JoinColumn(name = "actividad_id")
         @IndexColumn(name = "INDEX_COL")
 	private List<Impacto> impactos = new ArrayList<Impacto>();
 	
