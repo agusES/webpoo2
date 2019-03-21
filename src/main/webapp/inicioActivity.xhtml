@@ -77,34 +77,37 @@
 
                         <f:facet name="header">#{msg['ActivityList']}</f:facet>
 
-                        <p:column headerText="#{msg['Name']}">
+                        <p:column headerText="#{msg['Name']}" style="width: 17.5%;">
                             #{actividad.nombre}</p:column>
 
-                        <p:column headerText="#{msg['StartDate']}">
+                        <p:column headerText="#{msg['Tipo']}" style="width: 2.5%;">
+                            #{actividad.tipo()} </p:column>
+
+                        <p:column headerText="#{msg['StartDate']}" style="width: 5%;">
                             #{actividad.fechaInicio}</p:column>
 
-                        <p:column headerText="#{msg['EndDate']}">
+                        <p:column headerText="#{msg['EndDate']}" style="width: 5%;" >
                             #{actividad.fechaFin}</p:column>
 
-                        <p:column headerText="#{msg['Resolution']}">
+                        <p:column headerText="#{msg['Resolution']}" style="width: 5%;">
                             #{actividad.resolucion}</p:column>
 
-                        <p:column headerText="#{msg['CaseFile']}">
+                        <p:column headerText="#{msg['CaseFile']}" style="width: 5%;">
                             #{actividad.expediente}</p:column>
 
-                        <p:column headerText="#{msg['Announcement']}">
+                        <p:column headerText="#{msg['Announcement']}" style="width: 10%;">
                             #{actividad.convocatoria}</p:column>
 
-                        <p:column headerText="#{msg['StrategicLine']}">
+                        <p:column headerText="#{msg['StrategicLine']}" style="width: 12.5%;">
                             #{actividad.linea}</p:column>
 
-                        <p:column headerText="#{msg['Ambit']}">
+                        <p:column headerText="#{msg['Ambit']}" style="width: 7.5%;">
                             #{actividad.ambito}</p:column>
 
-                        <p:column headerText="#{msg['Impacto']}">
+                        <p:column headerText="#{msg['Impacto']}" style="width: 20%;">
                             #{actividad.impactos}</p:column>
 
-                        <p:column headerText="#{msg['Responsables']}">
+                        <p:column headerText="#{msg['Responsables']}" style="width: 10%;">
                             #{actividad.responsablesToString()}</p:column>
 
                     </p:dataTable>
@@ -155,7 +158,7 @@
                                             <p:selectOneMenu id="convocatoria"
                                                              value="#{actividadSimpleController.convocatoria}"
                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{convocatoriaController.getConvocatorias()}"
                                                     var="convocatoria"
@@ -169,7 +172,7 @@
                                             <p:selectOneMenu id="linea-estrategica"
                                                              value="#{actividadSimpleController.linea}"
                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{lineaEstrategicaController.getLineas()}"
                                                     var="linea" itemLabel="#{linea.nombre}"
@@ -180,7 +183,7 @@
                                                 id="ambito"
                                                 value="#{actividadSimpleController.ambito}"
                                                 converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{ambitoController.getAmbitos()}"
                                                     var="ambito" itemLabel="#{ambito.nombre}"
@@ -202,9 +205,9 @@
                                     <tr class="columna">
 
                                         <td><label for="impacto">#{msg['ObjetivoAfectado']}</label> <p:selectOneMenu id="impacto"
-                                                                              value="#{actividadSimpleController.objetivoSeleccionado}"
-                                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="#{msg['Select']}" itemValue="" />
+                                                                                                                     value="#{actividadSimpleController.objetivoSeleccionado}"
+                                                                                                                     converter="omnifaces.SelectItemsConverter">
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{objetivoController.getObjetivos()}"
                                                     var="objetivo" itemLabel="#{objetivo.nombre}"
@@ -226,6 +229,50 @@
                                 <h:commandButton class="btn btn-secondary"
                                                  action="#{actividadSimpleController.create()}"
                                                  value="#{msg['Create']}" />
+
+                            </h:form>
+                        </p:tab>
+
+                        <p:tab title="#{msg['AnhadirImpacto']}">
+                            <h:form id="anhadir-impacto">
+
+                                <table id="form-simple">
+                                    <tr class="columna">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+
+                                    <tr class="columna" layout="responsive" columns="3">
+                                        <td><label for="actividad-que-impacta">#{msg['SeleccionarActividad']}</label>
+                                            <p:selectOneMenu id="actividad-que-impacta" value="#{actividadSimpleController.actividadSeleccionada}"
+                                                             converter="omnifaces.SelectItemsConverter">
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
+                                                <f:selectItems value="#{actividadSimpleController.getActividadesSimples()}" var="actividad"
+                                                               itemLabel="#{actividad.nombre}" itemValue="#{actividad}" />
+                                            </p:selectOneMenu>
+                                        </td>
+
+                                        <td><label for="objetivo-afectado">#{msg['ObjetivoAfectado']}</label>
+                                            <p:selectOneMenu id="objetivo-afectado" value="#{actividadSimpleController.objetivoSeleccionado}"
+                                                             converter="omnifaces.SelectItemsConverter">
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
+                                                <f:selectItems value="#{objetivoController.getObjetivos()}" var="objetivo"
+                                                               itemLabel="#{objetivo.nombre}" itemValue="#{objetivo}" />
+                                            </p:selectOneMenu>
+                                        </td>
+
+                                        <td><label for="peso">#{msg['Impacto']}</label>
+                                            <h:inputText id="peso" value="#{actividadSimpleController.peso}" required="true" />
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <hr />
+
+                                <h:commandButton class="btn btn-secondary" action="#{actividadSimpleController.addImpacto()}"
+                                                 value="#{msg['Asignar']}" />
 
                             </h:form>
                         </p:tab>
@@ -271,7 +318,7 @@
                                             <p:selectOneMenu id="convocatoria"
                                                              value="#{compuestoController.convocatoria}"
                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{convocatoriaController.getConvocatorias()}"
                                                     var="convocatoria"
@@ -285,7 +332,7 @@
                                             <p:selectOneMenu id="linea-estrategica"
                                                              value="#{compuestoController.linea}"
                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true" />
                                                 <f:selectItems
                                                     value="#{lineaEstrategicaController.getLineas()}"
                                                     var="linea" itemLabel="#{linea.nombre}"
@@ -296,7 +343,7 @@
                                                 id="ambito"
                                                 value="#{compuestoController.ambito}"
                                                 converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" itemDisabled="true"/>
                                                 <f:selectItems
                                                     value="#{ambitoController.getAmbitos()}"
                                                     var="ambito" itemLabel="#{ambito.nombre}"
@@ -318,7 +365,7 @@
                                     <tr class="columna">
 
                                         <td><label for="impacto">#{msg['SeleccionarActividad']}
-                                            </label> <p:selectManyCheckbox id="actividades"
+                                            </label> <p:selectManyCheckbox id="actividades" layout="responsive" columns="4"
                                                                            value="#{compuestoController.actividades}"
                                                                            converter="omnifaces.SelectItemsConverter">
                                                 <f:selectItems
@@ -351,8 +398,8 @@
 
                                     <tr class="columna">
                                         <td><label for="lista-objetivos">#{msg['SeleccionarActividad']}</label> <p:selectOneMenu id="lista-objetivos"
-                                                                               value="#{actividadController.actividadSeleccionada}"
-                                                                               converter="omnifaces.SelectItemsConverter">
+                                                                                                                                 value="#{actividadController.actividadSeleccionada}"
+                                                                                                                                 converter="omnifaces.SelectItemsConverter">
                                                 <f:selectItems
                                                     value="#{actividadController.getActividades()}"
                                                     var="actividad" itemLabel="#{actividad.nombre}"
@@ -360,8 +407,8 @@
                                             </p:selectOneMenu></td>
 
                                         <td><label for="lista-usuarios">#{msg['SeleccionarUsuario']}</label> <p:selectOneMenu id="lista-usuarios"
-                                                                             value="#{actividadController.usuarioResponsable}"
-                                                                             converter="omnifaces.SelectItemsConverter">
+                                                                                                                              value="#{actividadController.usuarioResponsable}"
+                                                                                                                              converter="omnifaces.SelectItemsConverter">
                                                 <f:selectItems
                                                     value="#{usuarioController.getUsers()}"
                                                     var="usuario" itemLabel="#{usuario.name}"
@@ -379,10 +426,9 @@
                                                  value="#{msg['Asignar']}" />
 
                             </h:form>
+                        </p:tab>                                        
 
-                        </p:tab>
-
-                        <p:tab title="Crear convocatoria">
+                        <p:tab title="#{msg['CrearConvocatoria']}">
                             <h:form id="crear-convo">
                                 <label for="convo-name">#{msg['Name']}</label>
                                 <h:inputText id="convo-name"

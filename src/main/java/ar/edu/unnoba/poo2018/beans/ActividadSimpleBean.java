@@ -41,6 +41,7 @@ public class ActividadSimpleBean {
         }
         return actividadq;
     }
+    
      public List getActividades(Long id) {
         Query query = em.createNativeQuery("SELECT * from Actividad a where a.id IN (select r.actividad_id from Responsables r where r.usuario_id=?) and a.id IN (select s.id from ActividadesSimples s)",ActividadSimple.class);
         query.setParameter(1, id);

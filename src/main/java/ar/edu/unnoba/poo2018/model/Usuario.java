@@ -14,13 +14,13 @@ import javax.persistence.NamedQuery;
 @Table(name = "usuario")
 @NamedQueries({
     @NamedQuery(name = "usuario.findbyNameAndPassword",
-            query = "SELECT u FROM Usuario u where u.name = :value1 and u.password = :value2"),
+            query = "SELECT u FROM Usuario u where u.name = :value1 and u.password = :value2")
+    ,
     @NamedQuery(name = "usuario.allUsuarios",
-            query = "SELECT u FROM Usuario u"),
-})
+            query = "SELECT u FROM Usuario u"),})
 
 public class Usuario {
-    
+
     @Id
     @SequenceGenerator(name = "ID_USUARIO_SEQ", sequenceName = "SEQ_USUARIO", allocationSize = 1, initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_USUARIO_SEQ")
@@ -29,7 +29,7 @@ public class Usuario {
     private String name;
     private String password;
     private boolean administrador;
-    
+
     @Version
     protected int version;
 
@@ -79,31 +79,19 @@ public class Usuario {
         return "Usuario [nombre=" + name + ", password=" + password + ", administrador=" + administrador + "]";
     }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        return (getName() != null) 
+            ? (getClass().getSimpleName().hashCode() + getName().hashCode())
+            : super.hashCode();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getName() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getName().equals(((Usuario) other).getName())
+            : (other == this);
+    }
 }

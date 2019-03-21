@@ -66,29 +66,10 @@
             </ul>
         </nav>
 
-        <div class="container-obj">
-
-            <h:form class="form-obj">
-                <h2 class="form-heading">#{msg['AddObj']}</h2>
-
-                <label for="obj-name" style="align: left; width: 80px;">#{msg['Name']}</label>
-                <h:inputText id="obj-name" value="#{objetivoController.nombre}"
-                             required="true" />
-
-                <hr />
-
-                <br />
-
-                <h:commandButton id="create-obj-btn"
-                                 class="btn btn-lg btn-primary btn-block text-uppercase"
-                                 action="#{objetivoController.crearObj()}"
-                                 value="#{msg['Create']}" />
-            </h:form>
+        <div class="container-activities">
 
             <h:form>
-                <p:growl id="msgs" showDetail="true" />
-
-                <p:dataTable class="table-obj" id="ods"
+                <p:dataTable class="table-activities" id="ods"
                              value="#{objetivoController.getObjetivos()}" var="objetivo"
                              scrollable="false" editable="true">
 
@@ -98,8 +79,8 @@
                     <!-- 					update=":form:msgs" /> -->
                     <!-- 				<p:ajax event="rowEditCancel" listener="#{objetivoController.onRowCancel}" -->
                     <!-- 					update=":form:msgs" /> -->
-                     <p:ajax event="rowEdit" listener="#{objetivoController.updateEdited}"   />
-                     <p:ajax event="rowEditCancel"/>
+                    <p:ajax event="rowEdit" listener="#{objetivoController.updateEdited}"   />
+                    <p:ajax event="rowEditCancel"/>
                     <p:column headerText="#{msg['Name']}" style="width: 50%">
                         <p:cellEditor>
                             <f:facet name="output">
@@ -140,13 +121,34 @@
                                             </h:commandButton>
                                         </p:column>-->
 
-                    <p:column headerText="EDITAR" style="width: 10%">
+                    <p:column headerText="#{msg['Editar']}" style="width: 10%">
                         <p:rowEditor />
                     </p:column>
 
                 </p:dataTable>
             </h:form>
 
+            <div class="form-activity">
+
+                <p:tabView>
+                    <p:tab title="#{msg['AddObj']}">
+                        <h:form id="crear-obj">
+
+                            <label for="obj-name">#{msg['Name']}</label>
+                            <h:inputText id="obj-name" value="#{objetivoController.nombre}"
+                                         required="true" />
+
+                            <hr />
+
+                            <h:commandButton id="create-obj-btn" style="margin-top: 0.5em;"
+                                             class="btn btn-primary"
+                                             action="#{objetivoController.crearObj()}"
+                                             value="#{msg['Create']}" />
+                        </h:form>
+                    </p:tab>
+
+                </p:tabView>
+            </div>
         </div>
 
         <div class="footer">

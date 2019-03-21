@@ -1,6 +1,7 @@
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,7 +42,7 @@ public class UsuarioBean {
         }
         return userq;
     }
-    
+
     public boolean findUser(String name) {
         Query query = em.createQuery("SELECT u FROM Usuario u where u.name = :value1");
         query.setParameter("value1", name);
@@ -49,18 +50,26 @@ public class UsuarioBean {
         try {
             userq = (Usuario) query.getSingleResult();
             if (userq != null) {
-            	return true;
+                return true;
             }
-            
+
         } catch (Exception e) {
             userq = null;
         }
         return false;
     }
-    
-    @SuppressWarnings("unchecked")
-	public List<Usuario> getAllUsers(){
-        Query query = em.createNamedQuery("usuario.allUsuarios");
-        return query.getResultList();
+
+    public List<Usuario> getAllUsers() {
+        /* Query query = em.createNamedQuery("usuario.allUsuarios");
+        return query.getResultList(); */
+        Query query = em.createQuery("SELECT u FROM Usuario u");
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        try {
+            usuarios = query.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return usuarios;
     }
+
 }

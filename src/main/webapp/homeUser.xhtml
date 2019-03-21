@@ -74,6 +74,9 @@
 
                         <p:column headerText="#{msg['Name']}">
                             #{actividad.nombre}</p:column>
+                            
+                        <p:column headerText="#{msg['Tipo']}">
+                            #{actividad.tipo()} </p:column>
 
                         <p:column headerText="#{msg['StartDate']}">
                             #{actividad.fechaInicio}</p:column>

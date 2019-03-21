@@ -91,6 +91,11 @@ public class ActividadSimple extends Actividad implements Serializable {
             ? getNombre().equals(((ActividadSimple) other).getNombre())
             : (other == this);
     }
+
+    @Override
+    public String tipo() {
+        return "S";
+    }
         
         
 }

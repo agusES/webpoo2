@@ -10,7 +10,6 @@ import javax.faces.bean.SessionScoped;
 import ar.edu.unnoba.poo2018.beans.ActividadBean;
 import ar.edu.unnoba.poo2018.model.Actividad;
 import ar.edu.unnoba.poo2018.model.Usuario;
-import java.util.ArrayList;
 
 @ManagedBean(name = "actividadController")
 @SessionScoped
@@ -38,19 +37,18 @@ public class ActividadController implements Serializable {
         public void addUsuario() {
             this.actividadSeleccionada.addUsuario(usuarioResponsable);
             actividadb.Update(this.actividadSeleccionada);
-            
         }
-
+        
         public List<Actividad> getActividadesPorUsuario(Long id) {
             System.out.println("El parametro q nos llega es: " + id  );
             //actividadb.getActividades(Long.parseLong(id));
             return actividadb.getActividades(id);
         }
+        
 	public Usuario getUsuarioResponsable() {
 		return usuarioResponsable;
 	}
         
-
 	public void setUsuarioResponsable(Usuario usuarioResponsable) {
 		this.usuarioResponsable = usuarioResponsable;
 	}

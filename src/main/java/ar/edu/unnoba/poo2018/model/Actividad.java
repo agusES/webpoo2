@@ -229,4 +229,6 @@ public abstract class Actividad implements Serializable{
         }
         return true;
     }
+    
+    public abstract String tipo();
 }
