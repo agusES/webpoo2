@@ -73,7 +73,9 @@ public class UsuarioController implements Serializable {
 			return "homeUser.xhtml?faces-redirect=true";
 		}
 	}
-
+        public Long getUserId() {
+            return user.getId();
+        }
 	public String getUserName() {
 		return user.getName();
 	}

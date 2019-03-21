@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="#{idioma.language}" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+        <link rel="stylesheet" href="css/tema.css" />
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+        <title>#{msg['Objectives']}</title>
+    </h:head>
+
+    <f:view locale="#{idioma.locale}">
+
+        <nav class="navbar navbar-expand navbar-light">
+            <ul class="navbar-nav" id="barra-izq">
+                <h:form>
+                    <h:commandButton action="#{usuarioController.inicio()}"
+                                     value="#{msg['Home']}" class="btn btn-link" />
+                </h:form>
+                
+                <h:form>
+                    <h:commandButton action="inicioOdsUsuario.xhtml?faces-redirect=true"
+                                     value="#{msg['Objectives']}" class="btn btn-link" />
+                </h:form>
+            </ul>
+
+            <ul class="navbar-nav ml-auto" id="barra-der">
+                <button type="button" data-toggle="modal" data-target="#infoModal"
+                        class="btn btn-link">#{msg['About']}</button>
+                <h:form>
+                    <h:commandButton action="#"
+                                     value="#{usuarioController.getUserName()}"
+                                     class="btn btn-link" />
+                </h:form>
+                <h:form>
+                    <h:commandButton action="#{usuarioController.logout()}"
+                                     value="#{msg['Logout']}" class="btn btn-link" />
+                </h:form>
+                <h:form>
+                    <h:selectOneMenu value="#{idioma.language}" onchange="submit()"
+                                     class="cambiar-idioma">
+                        <f:selectItem itemValue="es" itemLabel="Español" />
+                        <f:selectItem itemValue="en" itemLabel="English" />
+                        <f:selectItem itemValue="fr" itemLabel="Francais" />
+                    </h:selectOneMenu>
+                </h:form>
+            </ul>
+        </nav>
+
+        <h:form class="container-activities">
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:dataTable class="table-activities" id="ods"
+                         value="#{objetivoController.getObjetivos()}" var="objetivo"
+                         scrollable="false" editable="true" >
+
+                <f:facet name="header">#{msg['ObjList']}</f:facet>
+
+                <p:column headerText="#{msg['Name']}" style="width: 75%">
+                    <h:outputText value="#{objetivo.nombre}" />
+                </p:column>
+
+                <p:column headerText="#{msg['PercentageReached']}"
+                          style="width: 25%">
+                    #{impactoController.getImpacto(objetivo.nro)} %
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+
+        <div class="footer">
+            #{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>
+        </div>
+
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-tittle">#{msg['About']}</h3>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&#215;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: justify">
+                            <span>#{msg['AboutUs']}</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"
+                                data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </f:view>
+</html>
+
+
+

@@ -8,7 +8,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <link rel="stylesheet"
+                href="/webpoo2/faces/javax.faces.resource/theme.css?ln=primefaces-redmond" />
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 	<link rel="stylesheet"
@@ -64,6 +65,48 @@
 				</h:form>
 			</ul>
 		</nav>
+                        <div class="container-activities">
+
+                <h:form>
+                    <p:dataTable class="table-activities" id="activities"
+                                 value="#{actividadController.getActividadesPorUsuario(usuarioController.userId)}"
+                                 var="actividad" scrollable="false" editable="true">
+
+                        <f:facet name="header">#{msg['ActivityListUser']} #{usuarioController.getUserName()}</f:facet>
+
+                        <p:column headerText="#{msg['Name']}">
+                            #{actividad.nombre}</p:column>
+
+                        <p:column headerText="#{msg['StartDate']}">
+                            #{actividad.fechaInicio}</p:column>
+
+                        <p:column headerText="#{msg['EndDate']}">
+                            #{actividad.fechaFin}</p:column>
+
+                        <p:column headerText="#{msg['Resolution']}">
+                            #{actividad.resolucion}</p:column>
+
+                        <p:column headerText="#{msg['CaseFile']}">
+                            #{actividad.expediente}</p:column>
+
+                        <p:column headerText="#{msg['Announcement']}">
+                            #{actividad.convocatoria}</p:column>
+
+                        <p:column headerText="#{msg['StrategicLine']}">
+                            #{actividad.linea}</p:column>
+
+                        <p:column headerText="#{msg['Ambit']}">
+                            #{actividad.ambito}</p:column>
+
+                        <p:column headerText="Impactos">
+                            #{actividad.impactos}</p:column>
+
+                        <p:column headerText="Responsables">
+                            #{actividad.responsablesToString()}</p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </div>
 
 		<div class="footer">
 			#{msg['CreatedBy']}<a href="https://www.unnoba.edu.ar/">UNNOBA</a>

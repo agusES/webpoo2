@@ -1,6 +1,7 @@
 package ar.edu.unnoba.poo2018.beans;
 
 import ar.edu.unnoba.poo2018.model.Actividad;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -21,6 +22,20 @@ public class ActividadBean {
 //    	Query query = em.createNamedQuery("actividad.getActividades");
         Query query = em.createQuery("SELECT a FROM actividades a");
         return query.getResultList();
+    }
+    /*Rotorna una lista de las actividades que tiene 
+    como responsable al usuario con id = idUsuario*/
+    public List<Actividad> getActividades(Long idUsuario) {
+        Query query = em.createQuery("SELECT ac FROM actividades ac JOIN ac.responsables r where r.id=:idUsuario");
+        query.setParameter("idUsuario", idUsuario);
+        List<Actividad> actividadesPorUsuario = new ArrayList<Actividad>();
+        try {
+            actividadesPorUsuario =query.getResultList();
+            System.out.println(actividadesPorUsuario);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return actividadesPorUsuario;
     }
     
     public void create(Actividad act) {

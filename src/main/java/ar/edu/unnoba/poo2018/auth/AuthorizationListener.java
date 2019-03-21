@@ -38,6 +38,7 @@ public class AuthorizationListener implements PhaseListener {
 				nh.handleNavigation(facesContext, null, "/inicio.xhtml?faces-redirect=true");
 			}
 		}
+                
 	}
 
 	@Override

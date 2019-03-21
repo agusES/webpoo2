@@ -101,10 +101,10 @@
                         <p:column headerText="#{msg['Ambit']}">
                             #{actividad.ambito}</p:column>
 
-                        <p:column headerText="Impactos">
+                        <p:column headerText="#{msg['Impacto']}">
                             #{actividad.impactos}</p:column>
 
-                        <p:column headerText="Responsables">
+                        <p:column headerText="#{msg['Responsables']}">
                             #{actividad.responsablesToString()}</p:column>
 
                     </p:dataTable>
@@ -117,7 +117,6 @@
                         <p:tab title="#{msg['AddSimpleActivity']}">
                             <h:form id="add-simple-activity">
                                 <table id="form-simple">
-                                    <caption>Parámetros</caption>
                                     <tr class="columna">
                                         <th></th>
                                         <th></th>
@@ -194,7 +193,6 @@
                                 <hr />
 
                                 <table id="form-simple2">
-                                    <caption>Impacto</caption>
                                     <tr class="columna">
                                         <th></th>
                                         <th></th>
@@ -203,18 +201,17 @@
 
                                     <tr class="columna">
 
-                                        <td><label for="impacto">Objetivo
-                                                afectado</label> <p:selectOneMenu id="impacto"
+                                        <td><label for="impacto">#{msg['ObjetivoAfectado']}</label> <p:selectOneMenu id="impacto"
                                                                               value="#{actividadSimpleController.objetivoSeleccionado}"
                                                                               converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Select']}" itemValue="" />
                                                 <f:selectItems
                                                     value="#{objetivoController.getObjetivos()}"
                                                     var="objetivo" itemLabel="#{objetivo.nombre}"
                                                     itemValue="#{objetivo}" />
                                             </p:selectOneMenu></td>
 
-                                        <td><label for="peso">Peso impacto</label> <h:inputText
+                                        <td><label for="peso">#{msg['Impacto']}</label> <h:inputText
                                                 id="peso"
                                                 value="#{actividadSimpleController.peso}"
                                                 required="true" /></td>
@@ -235,8 +232,7 @@
 
                         <p:tab title="#{msg['AddCompoundActivity']}">
                             <h:form id="add-compound-activity">
-                                    <table >
-                                    <caption>Parámetros</caption>
+                                <table >
                                     <tr class="columna">
                                         <th></th>
                                         <th></th>
@@ -289,7 +285,7 @@
                                             <p:selectOneMenu id="linea-estrategica"
                                                              value="#{compuestoController.linea}"
                                                              converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" />
                                                 <f:selectItems
                                                     value="#{lineaEstrategicaController.getLineas()}"
                                                     var="linea" itemLabel="#{linea.nombre}"
@@ -300,7 +296,7 @@
                                                 id="ambito"
                                                 value="#{compuestoController.ambito}"
                                                 converter="omnifaces.SelectItemsConverter">
-                                                <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                                                <f:selectItem itemLabel="#{msg['Seleccionar']}" itemValue="" />
                                                 <f:selectItems
                                                     value="#{ambitoController.getAmbitos()}"
                                                     var="ambito" itemLabel="#{ambito.nombre}"
@@ -308,39 +304,38 @@
                                             </p:selectOneMenu></td>
 
                                     </tr>
-                                    </table>                        
+                                </table>                        
 
-                                    <hr />
+                                <hr />
 
-                                    <table id="form-simple">
-                                        <caption>Actividades</caption>
-                                        <tr class="columna">
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
+                                <table id="form-simple">
+                                    <tr class="columna">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
 
-                                        <tr class="columna">
+                                    <tr class="columna">
 
-                                            <td><label for="impacto">Seleccionar actividades
-                                                </label> <p:selectManyCheckbox id="actividades"
-                                                    value="#{compuestoController.actividades}"
-                                                    converter="omnifaces.SelectItemsConverter">
-                                                    <f:selectItems
-                                                        value="#{actividadController.getActividades()}"
-                                                        var="actividad" itemLabel="#{actividad.nombre}"
-                                                        itemValue="#{actividad}" />
-                                                </p:selectManyCheckbox></td>
-                                        </tr>
-                                    </table>
+                                        <td><label for="impacto">#{msg['SeleccionarActividad']}
+                                            </label> <p:selectManyCheckbox id="actividades"
+                                                                           value="#{compuestoController.actividades}"
+                                                                           converter="omnifaces.SelectItemsConverter">
+                                                <f:selectItems
+                                                    value="#{actividadController.getActividades()}"
+                                                    var="actividad" itemLabel="#{actividad.nombre}"
+                                                    itemValue="#{actividad}" />
+                                            </p:selectManyCheckbox></td>
+                                    </tr>
+                                </table>
 
-                                    <hr />
+                                <hr />
 
-                                    <h:commandButton class="btn btn-secondary"
-                                                     action="#{compuestoController.create()}"
-                                                     value="#{msg['Create']}" />
+                                <h:commandButton class="btn btn-secondary"
+                                                 action="#{compuestoController.create()}"
+                                                 value="#{msg['Create']}" />
 
-                              
+
                             </h:form>
                         </p:tab>
 
@@ -355,8 +350,7 @@
                                     </tr>
 
                                     <tr class="columna">
-                                        <td><label for="lista-objetivos">Seleccionar
-                                                actividad</label> <p:selectOneMenu id="lista-objetivos"
+                                        <td><label for="lista-objetivos">#{msg['SeleccionarActividad']}</label> <p:selectOneMenu id="lista-objetivos"
                                                                                value="#{actividadController.actividadSeleccionada}"
                                                                                converter="omnifaces.SelectItemsConverter">
                                                 <f:selectItems
@@ -365,8 +359,7 @@
                                                     itemValue="#{actividad}" />
                                             </p:selectOneMenu></td>
 
-                                        <td><label for="lista-usuarios">Seleccionar
-                                                usuario</label> <p:selectOneMenu id="lista-usuarios"
+                                        <td><label for="lista-usuarios">#{msg['SeleccionarUsuario']}</label> <p:selectOneMenu id="lista-usuarios"
                                                                              value="#{actividadController.usuarioResponsable}"
                                                                              converter="omnifaces.SelectItemsConverter">
                                                 <f:selectItems
@@ -383,7 +376,7 @@
 
                                 <h:commandButton class="btn btn-secondary"
                                                  action="#{actividadController.addUsuario()}"
-                                                 value="Asignar" />
+                                                 value="#{msg['Asignar']}" />
 
                             </h:form>
 
@@ -398,12 +391,13 @@
                                 <hr />
 
                                 <h:commandButton
+                                    class="btn btn-secondary"
                                     action="#{convocatoriaController.crear()}"
                                     value="#{msg['Create']}" />
                             </h:form>
                         </p:tab>
 
-                        <p:tab title="Crear Linea estratégica">
+                        <p:tab title="#{msg['CrearLineaEstrategica']}">
                             <h:form id="crear-linea">
                                 <label for="linea-name">#{msg['Name']}</label>
                                 <h:inputText id="linea-name"
@@ -413,12 +407,13 @@
                                 <hr />
 
                                 <h:commandButton
+                                    class="btn btn-secondary"
                                     action="#{lineaEstrategicaController.crear()}"
                                     value="#{msg['Create']}" />
                             </h:form>
                         </p:tab>
 
-                        <p:tab title="Crear Ámbito">
+                        <p:tab title="#{msg['CrearAmbito']}">
                             <h:form id="crear-ambito">
                                 <label for="ambito-name">#{msg['Name']}</label>
                                 <h:inputText id="ambito-name"
@@ -426,8 +421,10 @@
 
                                 <hr />
 
-                                <h:commandButton action="#{ambitoController.crear()}"
-                                                 value="#{msg['Create']}" />
+                                <h:commandButton 
+                                    class="btn btn-secondary"
+                                    action="#{ambitoController.crear()}"
+                                    value="#{msg['Create']}" />
                             </h:form>
                         </p:tab>
 

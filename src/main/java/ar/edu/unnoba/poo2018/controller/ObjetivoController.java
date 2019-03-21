@@ -39,12 +39,19 @@ public class ObjetivoController implements Serializable {
 
     public void update(Objetivo obj){
         try{
-        	System.out.println("Se actualizará el objetivo con nombre" + obj);
+            System.out.println("Se actualizará el objetivo con nombre: " + obj);
             objetivob.update(obj);
             System.out.println("Ahora obj = " + obj);
         }catch(Exception e){
         	System.out.println("Algo salió mal en ObjetivoController.update()");
         }
+    }
+    public void updateEdited(RowEditEvent event) {
+       Objetivo miObjetivo = (Objetivo) event.getObject();
+       miObjetivo.setNombre(this.nombre);
+       System.out.println("El evento es " + event );
+       this.update(miObjetivo);
+       this.nombre = null;
     }
 
 	public void delete(Objetivo obj) {
